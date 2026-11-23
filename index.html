@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Wedding Invitation</title>
+    <title>Aiden &amp; Sophia — Digital Wedding Invitation</title>
+    
+    <!-- Open Graph Meta Tags for WhatsApp / Telegram / Social Link Previews on GitHub Pages -->
+    <meta property="og:title" content="You're Invited: Wedding Celebration">
+    <meta property="og:description" content="Tap to open our interactive digital wedding card, view the schedule, and RSVP.">
+    <meta property="og:type" content="website">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,7 +48,6 @@
     </script>
 
     <style>
-        /* Custom subtle animations and scrollbar */
         body {
             background-color: #FAF8F5;
             color: #2C2A29;
@@ -53,7 +57,7 @@
 
         /* Envelope Cover Curtain Transitions */
         #envelope-cover {
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
+            transition: transform 1.15s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.95s ease-in-out;
         }
         #envelope-cover.opened {
             transform: translateY(-100%);
@@ -97,19 +101,35 @@
          1. INTERACTIVE ENVELOPE / COVER REVEAL
     ========================================================== -->
     <div id="envelope-cover" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ivory px-6 text-center paper-texture">
-        <!-- Decorative Corner Botanical Borders -->
+        <!-- Decorative Corner Botanical SVG Borders -->
         <div class="pointer-events-none absolute inset-4 sm:inset-8 border border-champagne/40 rounded-3xl flex flex-col justify-between p-6">
-            <div class="flex justify-between text-champagne/60">
-                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
-                <svg class="w-8 h-8 rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
+            <div class="flex justify-between text-champagne/70">
+                <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M4 24C4 12.9543 12.9543 4 24 4M4 4L14 14M10 4C10 9 7 12 4 12M4 10C9 10 12 7 12 4"/>
+                </svg>
+                <svg class="w-10 h-10 rotate-90" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M4 24C4 12.9543 12.9543 4 24 4M4 4L14 14M10 4C10 9 7 12 4 12M4 10C9 10 12 7 12 4"/>
+                </svg>
             </div>
-            <div class="flex justify-between text-champagne/60">
-                <svg class="w-8 h-8 -rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
-                <svg class="w-8 h-8 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
+            <div class="flex justify-between text-champagne/70">
+                <svg class="w-10 h-10 -rotate-90" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M4 24C4 12.9543 12.9543 4 24 4M4 4L14 14M10 4C10 9 7 12 4 12M4 10C9 10 12 7 12 4"/>
+                </svg>
+                <svg class="w-10 h-10 rotate-180" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M4 24C4 12.9543 12.9543 4 24 4M4 4L14 14M10 4C10 9 7 12 4 12M4 10C9 10 12 7 12 4"/>
+                </svg>
             </div>
         </div>
 
         <div class="relative z-10 max-w-md mx-auto flex flex-col items-center">
+            <!-- Inline Botanical Olive Sprig SVG -->
+            <svg class="w-16 h-8 text-sage mb-3" viewBox="0 0 80 32" fill="none" stroke="currentColor" stroke-width="1.3">
+                <path d="M10 24C26 14 54 14 70 24" stroke-linecap="round"/>
+                <path d="M26 17C24 11 29 8 33 12C35 14 31 18 26 17Z" fill="#E9EFE7"/>
+                <path d="M40 15C40 9 46 8 48 13C49 16 44 18 40 15Z" fill="#E9EFE7"/>
+                <path d="M54 17C56 11 61 12 60 17C59 20 55 20 54 17Z" fill="#E9EFE7"/>
+            </svg>
+
             <p class="uppercase tracking-[0.28em] text-xs font-medium text-sage-dark mb-4">You Are Cordially Invited To The Wedding Of</p>
             
             <h1 id="cover-couple-names" class="font-serif text-5xl sm:text-6xl font-normal text-charcoal tracking-tight leading-tight mb-3">
@@ -123,7 +143,7 @@
             </div>
 
             <p id="cover-date-display" class="font-serif italic text-xl text-charcoal-light mb-10">
-                Saturday, October 24, 2026
+                Saturday, October 24, 2027
             </p>
 
             <!-- Interactive Wax Seal Button -->
@@ -147,18 +167,19 @@
     </div>
 
     <!-- =========================================================
-         TOP FLOATING UTILITY BAR (MUSIC TOGGLE & CUSTOMIZE)
+         TOP FLOATING UTILITY BAR (UNOBTRUSIVE HOST GEAR & MUSIC)
     ========================================================== -->
     <header class="fixed top-4 right-4 left-4 z-30 flex items-center justify-between max-w-4xl mx-auto pointer-events-none">
+        <!-- Subtle Host Tools Gear Icon (Discreet for guests, easily accessible for couple or via ?edit=1) -->
+        <button id="open-customize-top" type="button" title="Host Tools: Customize & Export Card" aria-label="Host Tools" class="pointer-events-auto w-9 h-9 rounded-full bg-ivory/75 backdrop-blur-md border border-champagne/25 text-charcoal-light/60 hover:text-charcoal hover:bg-white hover:border-champagne/60 shadow-sm flex items-center justify-center transition-all">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Music Box Toggle -->
         <button id="music-toggle-btn" type="button" class="pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full bg-ivory/90 backdrop-blur-md border border-champagne/30 shadow-sm text-xs font-medium text-charcoal hover:bg-white transition-all">
             <span id="music-indicator" class="w-2 h-2 rounded-full bg-charcoal-light/40"></span>
             <i id="music-icon" data-lucide="volume-x" class="w-4 h-4 text-sage-dark"></i>
             <span id="music-label" class="hidden sm:inline">Music Off</span>
-        </button>
-
-        <button id="open-customize-top" type="button" class="pointer-events-auto flex items-center gap-2 px-4 py-2 rounded-full bg-charcoal/90 backdrop-blur-md text-ivory shadow-sm text-xs font-medium hover:bg-sage-dark transition-all">
-            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-champagne"></i>
-            <span>Customize Card</span>
         </button>
     </header>
 
@@ -169,11 +190,12 @@
              2. COUPLE & EVENT HERO SECTION + COUNTDOWN + CALENDAR
         ========================================================== -->
         <section id="home-section" class="relative rounded-3xl bg-white border border-champagne/30 shadow-sm overflow-hidden">
-            <!-- Hero Photo Banner -->
+            <!-- Hero Photo Banner with Self-Contained Fallback -->
             <div class="relative h-72 sm:h-96 w-full overflow-hidden bg-sage-light">
                 <img 
+                    id="hero-banner-img"
                     src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80" 
-                    onerror="this.src='https://placehold.co/1200x700/E9EFE7/5D6D59?text=Aiden+%26+Sophia'"
+                    onerror="this.src='https://placehold.co/1200x700/E9EFE7/5D6D59?text=Wedding+Celebration'"
                     alt="Couple Portrait" 
                     class="w-full h-full object-cover object-center"
                 >
@@ -198,7 +220,7 @@
                 <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 px-6 py-4 rounded-2xl bg-ivory border border-champagne/30 mb-8">
                     <div class="flex items-center gap-2 text-sm font-medium text-charcoal">
                         <i data-lucide="calendar-heart" class="w-4 h-4 text-rose"></i>
-                        <span id="hero-date-text">Saturday, October 24, 2026</span>
+                        <span id="hero-date-text">Saturday, October 24, 2027</span>
                     </div>
                     <span class="hidden sm:inline text-champagne">•</span>
                     <div class="flex items-center gap-2 text-sm font-medium text-charcoal">
@@ -289,7 +311,6 @@
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="gallery-grid">
-                    <!-- Gallery Item 1 -->
                     <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" data-caption="Golden hour engagement walk">
                         <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/E9EFE7/5D6D59?text=Moment+1'" alt="Engagement 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
@@ -297,7 +318,6 @@
                         </div>
                     </button>
 
-                    <!-- Gallery Item 2 -->
                     <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80" data-caption="Laughter in the botanical gardens">
                         <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/F6ECEC/2C2A29?text=Moment+2'" alt="Engagement 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
@@ -305,7 +325,6 @@
                         </div>
                     </button>
 
-                    <!-- Gallery Item 3 -->
                     <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1200&q=80" data-caption="Quiet afternoon together">
                         <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/F2EDE4/A6885E?text=Moment+3'" alt="Engagement 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
@@ -313,7 +332,6 @@
                         </div>
                     </button>
 
-                    <!-- Gallery Item 4 -->
                     <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80" data-caption="Forever begins soon">
                         <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/E9EFE7/5D6D59?text=Moment+4'" alt="Engagement 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
@@ -336,7 +354,6 @@
             <!-- Itinerary Timeline Card -->
             <div class="bg-white rounded-3xl p-6 sm:p-10 border border-champagne/30 shadow-sm">
                 <div class="relative border-l-2 border-champagne/40 ml-4 sm:ml-6 space-y-8 py-2">
-                    <!-- Event 1 -->
                     <div class="relative pl-7 sm:pl-9">
                         <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-sage border-4 border-ivory"></span>
                         <span class="text-xs font-semibold uppercase tracking-wider text-sage-dark">4:30 PM</span>
@@ -344,7 +361,6 @@
                         <p class="text-sm text-charcoal-light mt-1">Guests are invited to be seated in the Conservatory Courtyard as we exchange vows.</p>
                     </div>
 
-                    <!-- Event 2 -->
                     <div class="relative pl-7 sm:pl-9">
                         <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-rose border-4 border-ivory"></span>
                         <span class="text-xs font-semibold uppercase tracking-wider text-rose">5:30 PM</span>
@@ -352,7 +368,6 @@
                         <p class="text-sm text-charcoal-light mt-1">Enjoy botanical spritzes, acoustic jazz, and passed hors d'oeuvres on the terrace.</p>
                     </div>
 
-                    <!-- Event 3 -->
                     <div class="relative pl-7 sm:pl-9">
                         <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-champagne border-4 border-ivory"></span>
                         <span class="text-xs font-semibold uppercase tracking-wider text-champagne-dark">7:00 PM</span>
@@ -443,7 +458,6 @@
                     <input type="text" id="guest-name" required placeholder="e.g., Eleanor Vance" class="w-full px-4 py-3 rounded-xl bg-ivory border border-champagne/40 text-sm text-charcoal focus:outline-none focus:border-sage">
                 </div>
 
-                <!-- Attendance Radio Cards -->
                 <div>
                     <span class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Will you be attending? *</span>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -503,7 +517,7 @@
                 </button>
             </form>
 
-            <!-- Saved RSVP Confirmation Pass (Hidden until submitted or loaded from storage) -->
+            <!-- Saved RSVP Confirmation Pass -->
             <div id="rsvp-pass-container" class="hidden max-w-xl mx-auto mt-6">
                 <div class="rounded-2xl bg-ivory border-2 border-dashed border-champagne p-6 relative">
                     <div class="flex items-center justify-between border-b border-champagne/30 pb-4 mb-4">
@@ -572,10 +586,10 @@
     </main>
 
     <!-- =========================================================
-         FLOATING BOTTOM NAVIGATION BAR (MOBILE-FIRST QUICK ACCESS)
+         FLOATING BOTTOM NAVIGATION BAR (CLEAN 5-ITEM GUEST BAR)
     ========================================================== -->
-    <nav aria-label="Section Navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-lg bg-charcoal/95 backdrop-blur-md text-ivory rounded-2xl shadow-xl border border-white/10 px-2 py-2">
-        <ul class="grid grid-cols-6 gap-1 text-center">
+    <nav aria-label="Section Navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-md bg-charcoal/95 backdrop-blur-md text-ivory rounded-2xl shadow-xl border border-white/10 px-2 py-2">
+        <ul class="grid grid-cols-5 gap-1 text-center">
             <li>
                 <a href="#home-section" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
                     <i data-lucide="heart" class="w-4 h-4 text-rose mb-1"></i>
@@ -606,12 +620,6 @@
                     <span class="text-[10px] tracking-wide">Gift</span>
                 </button>
             </li>
-            <li>
-                <button type="button" id="nav-customize-btn" class="w-full flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
-                    <i data-lucide="sparkles" class="w-4 h-4 text-sage mb-1"></i>
-                    <span class="text-[10px] tracking-wide">Edit</span>
-                </button>
-            </li>
         </ul>
     </nav>
 
@@ -628,14 +636,12 @@
                 <span class="text-xs uppercase tracking-[0.22em] text-champagne-dark font-semibold">Digital Blessing</span>
                 <h4 class="font-serif text-3xl text-charcoal mt-1 mb-4">Wedding Gift Transfer</h4>
 
-                <!-- Crisp Generated SVG QR Code -->
+                <!-- Crisp Generated Inline SVG QR Code -->
                 <div class="bg-white p-4 rounded-2xl border border-champagne/30 inline-block shadow-sm mb-4">
                     <svg class="w-40 h-40 mx-auto text-charcoal" viewBox="0 0 120 120" fill="currentColor">
-                        <!-- Finder Patterns -->
                         <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M20,20 h10 v10 h-10 z"/>
                         <path d="M80,10 h30 v30 h-30 z M85,15 v20 h20 v-20 z M90,20 h10 v10 h-10 z"/>
                         <path d="M10,80 h30 v30 h-30 z M15,85 v20 h20 v-20 z M20,90 h10 v10 h-10 z"/>
-                        <!-- Data Modules -->
                         <rect x="48" y="12" width="6" height="6"/><rect x="60" y="12" width="12" height="6"/>
                         <rect x="48" y="24" width="12" height="6"/><rect x="66" y="30" width="6" height="12"/>
                         <rect x="12" y="48" width="12" height="6"/><rect x="30" y="54" width="12" height="6"/>
@@ -687,14 +693,14 @@
     </div>
 
     <!-- =========================================================
-         MODAL 3: CUSTOMIZE CARD DRAWER / MODAL
+         MODAL 3: HOST TOOLS & GITHUB PAGES CUSTOMIZER MODAL
     ========================================================== -->
     <div id="customize-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-charcoal/60 backdrop-blur-sm p-4">
-        <div class="bg-ivory rounded-3xl max-w-lg w-full max-h-[88vh] overflow-y-auto p-6 sm:p-8 border border-champagne/40 shadow-2xl relative">
+        <div class="bg-ivory rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 border border-champagne/40 shadow-2xl relative">
             <div class="flex items-center justify-between pb-4 border-b border-champagne/30 mb-5">
                 <div>
-                    <span class="text-[10px] uppercase tracking-[0.22em] text-sage-dark font-semibold">Personalize Invitation</span>
-                    <h4 class="font-serif text-2xl text-charcoal">Customize Your Card</h4>
+                    <span class="text-[10px] uppercase tracking-[0.22em] text-sage-dark font-semibold">GitHub Pages Host Tools</span>
+                    <h4 class="font-serif text-2xl text-charcoal">Customize &amp; Publish Card</h4>
                 </div>
                 <button type="button" class="close-modal w-9 h-9 rounded-full bg-white border border-champagne/30 flex items-center justify-center text-charcoal hover:bg-ivory-dark">
                     <i data-lucide="x" class="w-4 h-4"></i>
@@ -744,14 +750,25 @@
                     </div>
                 </div>
 
-                <div class="pt-3 flex flex-wrap gap-2.5">
-                    <button type="submit" class="flex-1 py-3 px-4 rounded-xl bg-charcoal text-ivory text-xs font-medium hover:bg-sage-dark transition-colors">
-                        Save &amp; Apply Changes
+                <!-- Action Buttons for GitHub Pages Workflow -->
+                <div class="pt-3 space-y-2.5">
+                    <button type="submit" class="w-full py-3 px-4 rounded-xl bg-charcoal text-ivory text-xs font-medium hover:bg-sage-dark transition-colors">
+                        Preview Changes on Page
                     </button>
-                    <button type="button" id="share-link-btn" class="py-3 px-4 rounded-xl bg-sage-light text-sage-dark border border-sage/30 text-xs font-medium hover:bg-sage hover:text-white transition-colors flex items-center gap-1.5">
-                        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-                        Copy Share Link
-                    </button>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button type="button" id="share-link-btn" class="py-3 px-4 rounded-xl bg-sage-light text-sage-dark border border-sage/30 text-xs font-medium hover:bg-sage hover:text-white transition-colors flex items-center justify-center gap-1.5">
+                            <i data-lucide="link" class="w-3.5 h-3.5"></i>
+                            Copy Pre-Configured URL
+                        </button>
+                        <button type="button" id="export-html-btn" class="py-3 px-4 rounded-xl bg-champagne-dark text-white text-xs font-medium hover:bg-charcoal transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                            <i data-lucide="file-code" class="w-3.5 h-3.5"></i>
+                            Download index.html
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-charcoal-light text-center pt-1">
+                        Tip: Download the customized <code class="bg-white px-1.5 py-0.5 rounded border border-champagne/30">index.html</code> and push it to your GitHub repo so every visitor sees your details by default.
+                    </p>
                 </div>
             </form>
         </div>
@@ -771,46 +788,51 @@
          APPLICATION JAVASCRIPT LOGIC
     ========================================================== -->
     <script>
+        // Default configuration object (updated automatically when exported via Host Tools)
+        const DEFAULT_WEDDING_CONFIG = {
+            partner1: "Aiden",
+            partner2: "Sophia",
+            datetime: "2027-10-24T16:30",
+            venue: "The Glasshouse at Seputeh",
+            address: "17, Lorong Syed Putra Kiri, Bukit Seputeh, 50460 Kuala Lumpur, Malaysia",
+            dressCode: "Garden Formal / Earthy Pastels",
+            bankName: "Maybank Berhad",
+            accountNumber: "5142 8890 3412"
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Lucide Icons
             lucide.createIcons();
 
             // ---------------------------------------------------------
-            // 1. DEFAULT & CUSTOMIZABLE EVENT CONFIGURATION STATE
+            // 1. STATIC GITHUB PAGES CONFIG LOADER (HASH, QUERY, OR DEFAULT)
             // ---------------------------------------------------------
-            const defaultConfig = {
-                partner1: 'Aiden',
-                partner2: 'Sophia',
-                datetime: '2026-10-24T16:30',
-                venue: 'The Glasshouse at Seputeh',
-                address: '17, Lorong Syed Putra Kiri, Bukit Seputeh, 50460 Kuala Lumpur, Malaysia',
-                dressCode: 'Garden Formal / Earthy Pastels',
-                bankName: 'Maybank Berhad',
-                accountNumber: '5142 8890 3412'
-            };
+            function parseHashOrQuery() {
+                const searchParams = new URLSearchParams(window.location.search);
+                const hashString = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : '';
+                const hashParams = new URLSearchParams(hashString);
 
-            // Check URL params first (supports sharing customized card via URL!)
-            function loadConfig() {
-                const params = new URLSearchParams(window.location.search);
-                if (params.has('p1')) {
+                // Support both ?p1=... and #p1=... so GitHub Pages static URLs work cleanly
+                const getParam = (key) => hashParams.get(key) || searchParams.get(key);
+
+                if (getParam('p1') || getParam('p2') || getParam('vn')) {
                     return {
-                        partner1: params.get('p1') || defaultConfig.partner1,
-                        partner2: params.get('p2') || defaultConfig.partner2,
-                        datetime: params.get('dt') || defaultConfig.datetime,
-                        venue: params.get('vn') || defaultConfig.venue,
-                        address: params.get('ad') || defaultConfig.address,
-                        dressCode: params.get('dc') || defaultConfig.dressCode,
-                        bankName: params.get('bk') || defaultConfig.bankName,
-                        accountNumber: params.get('ac') || defaultConfig.accountNumber
+                        partner1: getParam('p1') || DEFAULT_WEDDING_CONFIG.partner1,
+                        partner2: getParam('p2') || DEFAULT_WEDDING_CONFIG.partner2,
+                        datetime: getParam('dt') || DEFAULT_WEDDING_CONFIG.datetime,
+                        venue: getParam('vn') || DEFAULT_WEDDING_CONFIG.venue,
+                        address: getParam('ad') || DEFAULT_WEDDING_CONFIG.address,
+                        dressCode: getParam('dc') || DEFAULT_WEDDING_CONFIG.dressCode,
+                        bankName: getParam('bk') || DEFAULT_WEDDING_CONFIG.bankName,
+                        accountNumber: getParam('ac') || DEFAULT_WEDDING_CONFIG.accountNumber
                     };
                 }
-                const saved = localStorage.getItem('wedding_card_config_v1');
-                return saved ? { ...defaultConfig, ...JSON.parse(saved) } : { ...defaultConfig };
+                const saved = localStorage.getItem('wedding_card_config_gh_v1');
+                return saved ? { ...DEFAULT_WEDDING_CONFIG, ...JSON.parse(saved) } : { ...DEFAULT_WEDDING_CONFIG };
             }
 
-            let config = loadConfig();
+            let config = parseHashOrQuery();
 
-            // Helper: Toast Notification (Never use alert())
+            // Toast Notification
             let toastTimer = null;
             function showToast(msg) {
                 const box = document.getElementById('toast-box');
@@ -822,10 +844,10 @@
                 toastTimer = setTimeout(() => {
                     box.classList.remove('opacity-100', 'translate-y-0');
                     box.classList.add('opacity-0', 'translate-y-[-10px]');
-                }, 2800);
+                }, 3000);
             }
 
-            // Helper: Clipboard copy using execCommand fallback for iframe compatibility
+            // Iframe & GitHub Pages safe clipboard helper
             function copyTextToClipboard(text, successMsg) {
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
@@ -842,10 +864,9 @@
                 document.body.removeChild(textarea);
             }
 
-            // Format readable date
             function formatFullDate(isoStr) {
                 const dateObj = new Date(isoStr);
-                if (isNaN(dateObj.getTime())) return 'Saturday, October 24, 2026';
+                if (isNaN(dateObj.getTime())) return 'Saturday, October 24, 2027';
                 return dateObj.toLocaleDateString('en-US', {
                     weekday: 'long',
                     year: 'numeric',
@@ -854,7 +875,6 @@
                 });
             }
 
-            // Apply configuration across entire DOM
             function applyConfigToDOM() {
                 const coupleTitle = `${config.partner1} & ${config.partner2}`;
                 const monogram = `${config.partner1.charAt(0).toUpperCase()}&${config.partner2.charAt(0).toUpperCase()}`;
@@ -873,20 +893,17 @@
                 document.getElementById('venue-name-display').textContent = config.venue;
                 document.getElementById('venue-address-display').textContent = config.address;
 
-                // Map links
                 const encodedQuery = encodeURIComponent(`${config.venue}, ${config.address}`);
                 document.getElementById('google-maps-link').href = `https://maps.google.com/?q=${encodedQuery}`;
                 document.getElementById('waze-link').href = `https://waze.com/ul?q=${encodedQuery}&navigate=yes`;
 
-                // Bank / Gift details
                 document.getElementById('gift-bank-display').textContent = config.bankName;
                 document.getElementById('gift-holder-display').textContent = coupleTitle;
                 document.getElementById('gift-account-display').textContent = config.accountNumber;
 
-                // Google Calendar URL
                 const startDate = new Date(config.datetime);
-                const endDate = new Date(startDate.getTime() + 5 * 60 * 60 * 1000); // +5 hours
-                const toGCalFormat = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                const endDate = new Date(startDate.getTime() + 5 * 60 * 60 * 1000);
+                const toGCalFormat = (d) => isNaN(d.getTime()) ? '' : d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
                 const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(coupleTitle + ' Wedding')}&dates=${toGCalFormat(startDate)}/${toGCalFormat(endDate)}&details=${encodeURIComponent('We look forward to celebrating with you!')}&location=${encodedQuery}`;
                 document.getElementById('google-cal-btn').href = gCalUrl;
             }
@@ -899,8 +916,6 @@
             let audioCtx = null;
             let isMusicPlaying = false;
             let melodyInterval = null;
-
-            // Gentle pentatonic music-box notes (C5, E5, G5, B5, D6, A5, G5, E5)
             const notes = [523.25, 659.25, 783.99, 987.77, 1174.66, 880.00, 783.99, 659.25];
             let noteIdx = 0;
 
@@ -911,7 +926,6 @@
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-                // Soft bell-like envelope
                 gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 0.08);
                 gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.2);
@@ -975,7 +989,6 @@
                 else startMusic();
             });
 
-            // Envelope Cover Reveal
             document.getElementById('open-invitation-btn').addEventListener('click', () => {
                 document.getElementById('envelope-cover').classList.add('opened');
                 startMusic();
@@ -1002,7 +1015,6 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-            // Download .ICS Calendar File
             document.getElementById('download-ics-btn').addEventListener('click', () => {
                 const startDate = new Date(config.datetime);
                 const endDate = new Date(startDate.getTime() + 5 * 60 * 60 * 1000);
@@ -1035,7 +1047,6 @@
                 showToast('Calendar (.ics) file downloaded');
             });
 
-            // Copy Address Button
             document.getElementById('copy-address-btn').addEventListener('click', () => {
                 copyTextToClipboard(`${config.venue}, ${config.address}`, 'Venue address copied!');
             });
@@ -1057,7 +1068,7 @@
             });
 
             // ---------------------------------------------------------
-            // 5. RSVP & LIVE GUESTBOOK WALL (LOCALSTORAGE PERSISTENCE)
+            // 5. RSVP & LIVE GUESTBOOK WALL
             // ---------------------------------------------------------
             const defaultWishes = [
                 {
@@ -1080,7 +1091,7 @@
                 }
             ];
 
-            let wishes = JSON.parse(localStorage.getItem('wedding_wishes_v1')) || defaultWishes;
+            let wishes = JSON.parse(localStorage.getItem('wedding_wishes_gh_v1')) || defaultWishes;
             let currentWishFilter = 'all';
 
             function renderWishes() {
@@ -1113,7 +1124,6 @@
 
             renderWishes();
 
-            // Filter buttons for Guestbook
             document.querySelectorAll('.wish-filter-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.wish-filter-btn').forEach(b => {
@@ -1125,7 +1135,6 @@
                 });
             });
 
-            // Toggle attendance fields visibility
             document.querySelectorAll('input[name="attendance"]').forEach(radio => {
                 radio.addEventListener('change', (e) => {
                     const details = document.getElementById('attending-details');
@@ -1133,7 +1142,6 @@
                 });
             });
 
-            // Load existing RSVP Pass if present
             const rsvpForm = document.getElementById('rsvp-form');
             const rsvpPassContainer = document.getElementById('rsvp-pass-container');
 
@@ -1156,7 +1164,7 @@
                 }
             }
 
-            const savedRsvp = JSON.parse(localStorage.getItem('wedding_user_rsvp_v1'));
+            const savedRsvp = JSON.parse(localStorage.getItem('wedding_user_rsvp_gh_v1'));
             if (savedRsvp) {
                 showRsvpPass(savedRsvp);
             }
@@ -1166,7 +1174,6 @@
                 rsvpForm.classList.remove('hidden');
             });
 
-            // Handle RSVP Submission
             rsvpForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const name = document.getElementById('guest-name').value.trim();
@@ -1177,16 +1184,15 @@
                 const wishText = document.getElementById('guest-wish').value.trim();
 
                 const rsvpData = { name, status, guests, meal, song, wishText };
-                localStorage.setItem('wedding_user_rsvp_v1', JSON.stringify(rsvpData));
+                localStorage.setItem('wedding_user_rsvp_gh_v1', JSON.stringify(rsvpData));
 
-                // Add wish directly to live Guestbook Wall
                 wishes.unshift({
                     name,
                     status,
                     message: wishText,
                     time: 'Just now'
                 });
-                localStorage.setItem('wedding_wishes_v1', JSON.stringify(wishes));
+                localStorage.setItem('wedding_wishes_gh_v1', JSON.stringify(wishes));
                 renderWishes();
 
                 showRsvpPass(rsvpData);
@@ -1194,7 +1200,7 @@
             });
 
             // ---------------------------------------------------------
-            // 6. MODALS (GIFT MODAL & CUSTOMIZE CARD MODAL)
+            // 6. MODALS, HOST TOOLS, & GITHUB PAGES EXPORT
             // ---------------------------------------------------------
             const giftModal = document.getElementById('gift-modal');
             const customizeModal = document.getElementById('customize-modal');
@@ -1215,14 +1221,12 @@
                 btn.addEventListener('click', closeAllModals);
             });
 
-            // Close modal on backdrop click
             [giftModal, customizeModal, lightboxModal].forEach(modal => {
                 modal.addEventListener('click', (e) => {
                     if (e.target === modal) closeAllModals();
                 });
             });
 
-            // Gift modal triggers
             document.getElementById('open-gift-modal-btn').addEventListener('click', () => openModal(giftModal));
             document.getElementById('nav-gift-btn').addEventListener('click', () => openModal(giftModal));
 
@@ -1230,7 +1234,6 @@
                 copyTextToClipboard(config.accountNumber, 'Account number copied!');
             });
 
-            // Customize modal triggers
             function openCustomizeDrawer() {
                 document.getElementById('cfg-partner1').value = config.partner1;
                 document.getElementById('cfg-partner2').value = config.partner2;
@@ -1244,39 +1247,82 @@
             }
 
             document.getElementById('open-customize-top').addEventListener('click', openCustomizeDrawer);
-            document.getElementById('nav-customize-btn').addEventListener('click', openCustomizeDrawer);
+
+            // Auto-open Host Tools if ?edit=1 is in the URL
+            if (new URLSearchParams(window.location.search).get('edit') === '1') {
+                document.getElementById('envelope-cover').classList.add('opened');
+                openCustomizeDrawer();
+            }
+
+            function readFormConfig() {
+                return {
+                    partner1: document.getElementById('cfg-partner1').value.trim() || DEFAULT_WEDDING_CONFIG.partner1,
+                    partner2: document.getElementById('cfg-partner2').value.trim() || DEFAULT_WEDDING_CONFIG.partner2,
+                    datetime: document.getElementById('cfg-datetime').value || DEFAULT_WEDDING_CONFIG.datetime,
+                    venue: document.getElementById('cfg-venue').value.trim() || DEFAULT_WEDDING_CONFIG.venue,
+                    address: document.getElementById('cfg-address').value.trim() || DEFAULT_WEDDING_CONFIG.address,
+                    dressCode: document.getElementById('cfg-dresscode').value.trim() || DEFAULT_WEDDING_CONFIG.dressCode,
+                    bankName: document.getElementById('cfg-bank').value.trim() || DEFAULT_WEDDING_CONFIG.bankName,
+                    accountNumber: document.getElementById('cfg-account').value.trim() || DEFAULT_WEDDING_CONFIG.accountNumber
+                };
+            }
 
             document.getElementById('customize-form').addEventListener('submit', (e) => {
                 e.preventDefault();
-                config = {
-                    partner1: document.getElementById('cfg-partner1').value.trim() || defaultConfig.partner1,
-                    partner2: document.getElementById('cfg-partner2').value.trim() || defaultConfig.partner2,
-                    datetime: document.getElementById('cfg-datetime').value || defaultConfig.datetime,
-                    venue: document.getElementById('cfg-venue').value.trim() || defaultConfig.venue,
-                    address: document.getElementById('cfg-address').value.trim() || defaultConfig.address,
-                    dressCode: document.getElementById('cfg-dresscode').value.trim() || defaultConfig.dressCode,
-                    bankName: document.getElementById('cfg-bank').value.trim() || defaultConfig.bankName,
-                    accountNumber: document.getElementById('cfg-account').value.trim() || defaultConfig.accountNumber
-                };
-                localStorage.setItem('wedding_card_config_v1', JSON.stringify(config));
+                config = readFormConfig();
+                localStorage.setItem('wedding_card_config_gh_v1', JSON.stringify(config));
                 applyConfigToDOM();
                 updateCountdown();
                 closeAllModals();
-                showToast('Wedding card updated!');
+                showToast('Wedding card preview updated!');
             });
 
-            // Copy Shareable URL with custom query parameters
+            // Copy Pre-Configured URL (using URL hash so GitHub Pages static routing always preserves it)
             document.getElementById('share-link-btn').addEventListener('click', () => {
-                const url = new URL(window.location.href.split('?')[0]);
-                url.searchParams.set('p1', document.getElementById('cfg-partner1').value.trim() || config.partner1);
-                url.searchParams.set('p2', document.getElementById('cfg-partner2').value.trim() || config.partner2);
-                url.searchParams.set('dt', document.getElementById('cfg-datetime').value || config.datetime);
-                url.searchParams.set('vn', document.getElementById('cfg-venue').value.trim() || config.venue);
-                url.searchParams.set('ad', document.getElementById('cfg-address').value.trim() || config.address);
-                url.searchParams.set('dc', document.getElementById('cfg-dresscode').value.trim() || config.dressCode);
-                url.searchParams.set('bk', document.getElementById('cfg-bank').value.trim() || config.bankName);
-                url.searchParams.set('ac', document.getElementById('cfg-account').value.trim() || config.accountNumber);
-                copyTextToClipboard(url.toString(), 'Shareable invitation link copied!');
+                config = readFormConfig();
+                applyConfigToDOM();
+                const baseUrl = window.location.href.split('#')[0].split('?')[0];
+                const hashParams = new URLSearchParams();
+                hashParams.set('p1', config.partner1);
+                hashParams.set('p2', config.partner2);
+                hashParams.set('dt', config.datetime);
+                hashParams.set('vn', config.venue);
+                hashParams.set('ad', config.address);
+                hashParams.set('dc', config.dressCode);
+                hashParams.set('bk', config.bankName);
+                hashParams.set('ac', config.accountNumber);
+                copyTextToClipboard(`${baseUrl}#${hashParams.toString()}`, 'Shareable URL copied!');
+            });
+
+            // Export standalone customized index.html ready to commit to GitHub Pages
+            document.getElementById('export-html-btn').addEventListener('click', () => {
+                config = readFormConfig();
+                applyConfigToDOM();
+
+                // Close modals & reset envelope state in cloned HTML snapshot
+                closeAllModals();
+                const envelope = document.getElementById('envelope-cover');
+                const wasOpened = envelope.classList.contains('opened');
+                envelope.classList.remove('opened');
+
+                let rawHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+                // Embed the couple's custom config directly into DEFAULT_WEDDING_CONFIG in the exported file
+                const configRegex = /const DEFAULT_WEDDING_CONFIG = \{[\s\S]*?\};/;
+                const replacementConfig = `const DEFAULT_WEDDING_CONFIG = ${JSON.stringify(config, null, 12)};`;
+                rawHtml = rawHtml.replace(configRegex, replacementConfig);
+
+                if (wasOpened) envelope.classList.add('opened');
+
+                const blob = new Blob([rawHtml], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'index.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showToast('Customized index.html downloaded for GitHub!');
             });
         });
     </script>
