@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wedding Invitation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#FAF8F5',
+                        'ivory-dark': '#F2EDE4',
+                        sage: '#7A8B76',
+                        'sage-dark': '#5D6D59',
+                        'sage-light': '#E9EFE7',
+                        rose: '#C89B9B',
+                        'rose-light': '#F6ECEC',
+                        champagne: '#C5A880',
+                        'champagne-dark': '#A6885E',
+                        charcoal: '#2C2A29',
+                        'charcoal-light': '#5C5855'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom subtle animations and scrollbar */
+        body {
+            background-color: #FAF8F5;
+            color: #2C2A29;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Envelope Cover Curtain Transitions */
+        #envelope-cover {
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
+        }
+        #envelope-cover.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Wax Seal Pulse & Shine */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.5), 0 10px 25px -5px rgba(44, 42, 41, 0.25); }
+            50% { box-shadow: 0 0 0 14px rgba(197, 168, 128, 0), 0 15px 30px -5px rgba(44, 42, 41, 0.35); }
+        }
+        .wax-seal {
+            animation: pulseGlow 3s infinite;
+            background: radial-gradient(circle at 30% 30%, #D8BE9A, #B89668 65%, #99794D 100%);
+        }
+
+        /* Subtle paper texture overlay */
+        .paper-texture {
+            background-image: radial-gradient(#C5A880 0.45px, transparent 0.45px), radial-gradient(#7A8B76 0.45px, #FAF8F5 0.45px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+
+        /* Custom thin scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5C8B8;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-light selection:text-charcoal pb-24">
+
+    <!-- =========================================================
+         1. INTERACTIVE ENVELOPE / COVER REVEAL
+    ========================================================== -->
+    <div id="envelope-cover" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ivory px-6 text-center paper-texture">
+        <!-- Decorative Corner Botanical Borders -->
+        <div class="pointer-events-none absolute inset-4 sm:inset-8 border border-champagne/40 rounded-3xl flex flex-col justify-between p-6">
+            <div class="flex justify-between text-champagne/60">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
+                <svg class="w-8 h-8 rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
+            </div>
+            <div class="flex justify-between text-champagne/60">
+                <svg class="w-8 h-8 -rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
+                <svg class="w-8 h-8 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 12C3 7.02944 7.02944 3 12 3M3 3L9 9"/></svg>
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-md mx-auto flex flex-col items-center">
+            <p class="uppercase tracking-[0.28em] text-xs font-medium text-sage-dark mb-4">You Are Cordially Invited To The Wedding Of</p>
+            
+            <h1 id="cover-couple-names" class="font-serif text-5xl sm:text-6xl font-normal text-charcoal tracking-tight leading-tight mb-3">
+                Aiden &amp; Sophia
+            </h1>
+            
+            <div class="flex items-center gap-3 my-3 text-champagne">
+                <span class="h-px w-12 bg-champagne/60"></span>
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span class="h-px w-12 bg-champagne/60"></span>
+            </div>
+
+            <p id="cover-date-display" class="font-serif italic text-xl text-charcoal-light mb-10">
+                Saturday, October 24, 2026
+            </p>
+
+            <!-- Interactive Wax Seal Button -->
+            <button id="open-invitation-btn" type="button" class="group relative flex flex-col items-center focus:outline-none cursor-pointer">
+                <div class="wax-seal w-24 h-24 rounded-full flex items-center justify-center border-2 border-ivory/80 transition-transform duration-300 group-hover:scale-105 group-active:scale-95">
+                    <div class="w-20 h-20 rounded-full border border-ivory/40 flex flex-col items-center justify-center text-ivory">
+                        <span id="wax-monogram" class="font-serif text-2xl tracking-widest font-semibold">A&amp;S</span>
+                    </div>
+                </div>
+                <span class="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-charcoal text-ivory text-xs uppercase tracking-[0.2em] font-medium shadow-sm group-hover:bg-sage-dark transition-colors">
+                    Open Invitation
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+            </button>
+
+            <p class="mt-4 text-[11px] text-charcoal-light/70 flex items-center gap-1.5">
+                <i data-lucide="volume-2" class="w-3.5 h-3.5 text-sage"></i>
+                Includes gentle ambient melody (can be muted anytime)
+            </p>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         TOP FLOATING UTILITY BAR (MUSIC TOGGLE & CUSTOMIZE)
+    ========================================================== -->
+    <header class="fixed top-4 right-4 left-4 z-30 flex items-center justify-between max-w-4xl mx-auto pointer-events-none">
+        <button id="music-toggle-btn" type="button" class="pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full bg-ivory/90 backdrop-blur-md border border-champagne/30 shadow-sm text-xs font-medium text-charcoal hover:bg-white transition-all">
+            <span id="music-indicator" class="w-2 h-2 rounded-full bg-charcoal-light/40"></span>
+            <i id="music-icon" data-lucide="volume-x" class="w-4 h-4 text-sage-dark"></i>
+            <span id="music-label" class="hidden sm:inline">Music Off</span>
+        </button>
+
+        <button id="open-customize-top" type="button" class="pointer-events-auto flex items-center gap-2 px-4 py-2 rounded-full bg-charcoal/90 backdrop-blur-md text-ivory shadow-sm text-xs font-medium hover:bg-sage-dark transition-all">
+            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-champagne"></i>
+            <span>Customize Card</span>
+        </button>
+    </header>
+
+    <!-- MAIN INVITATION CONTENT -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 space-y-16 sm:space-y-24">
+
+        <!-- =========================================================
+             2. COUPLE & EVENT HERO SECTION + COUNTDOWN + CALENDAR
+        ========================================================== -->
+        <section id="home-section" class="relative rounded-3xl bg-white border border-champagne/30 shadow-sm overflow-hidden">
+            <!-- Hero Photo Banner -->
+            <div class="relative h-72 sm:h-96 w-full overflow-hidden bg-sage-light">
+                <img 
+                    src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80" 
+                    onerror="this.src='https://placehold.co/1200x700/E9EFE7/5D6D59?text=Aiden+%26+Sophia'"
+                    alt="Couple Portrait" 
+                    class="w-full h-full object-cover object-center"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
+            </div>
+
+            <!-- Hero Details -->
+            <div class="relative px-6 sm:px-12 pb-10 -mt-12 text-center">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-sage-light text-sage-dark text-xs uppercase tracking-[0.22em] font-medium mb-4 border border-sage/20">
+                    Together With Their Families
+                </span>
+
+                <h2 id="hero-couple-names" class="font-serif text-5xl sm:text-6xl font-normal text-charcoal tracking-tight mb-3">
+                    Aiden &amp; Sophia
+                </h2>
+
+                <p id="hero-tagline" class="font-serif italic text-lg sm:text-xl text-charcoal-light max-w-lg mx-auto mb-6">
+                    Request the pleasure of your company as we exchange vows and celebrate the beginning of our forever.
+                </p>
+
+                <!-- Date & Venue Highlight Box -->
+                <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 px-6 py-4 rounded-2xl bg-ivory border border-champagne/30 mb-8">
+                    <div class="flex items-center gap-2 text-sm font-medium text-charcoal">
+                        <i data-lucide="calendar-heart" class="w-4 h-4 text-rose"></i>
+                        <span id="hero-date-text">Saturday, October 24, 2026</span>
+                    </div>
+                    <span class="hidden sm:inline text-champagne">•</span>
+                    <div class="flex items-center gap-2 text-sm font-medium text-charcoal">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-sage-dark"></i>
+                        <span id="hero-venue-short">The Glasshouse at Seputeh</span>
+                    </div>
+                </div>
+
+                <!-- Live Countdown Timer -->
+                <div class="max-w-md mx-auto mb-8">
+                    <p class="text-[11px] uppercase tracking-[0.22em] text-charcoal-light mb-3">Counting Down To The Big Day</p>
+                    <div class="grid grid-cols-4 gap-2.5 sm:gap-4">
+                        <div class="bg-ivory-dark/70 rounded-2xl p-3 border border-champagne/20">
+                            <span id="cd-days" class="block font-serif text-3xl sm:text-4xl font-semibold text-charcoal">00</span>
+                            <span class="text-[11px] uppercase tracking-wider text-charcoal-light">Days</span>
+                        </div>
+                        <div class="bg-ivory-dark/70 rounded-2xl p-3 border border-champagne/20">
+                            <span id="cd-hours" class="block font-serif text-3xl sm:text-4xl font-semibold text-charcoal">00</span>
+                            <span class="text-[11px] uppercase tracking-wider text-charcoal-light">Hours</span>
+                        </div>
+                        <div class="bg-ivory-dark/70 rounded-2xl p-3 border border-champagne/20">
+                            <span id="cd-minutes" class="block font-serif text-3xl sm:text-4xl font-semibold text-charcoal">00</span>
+                            <span class="text-[11px] uppercase tracking-wider text-charcoal-light">Mins</span>
+                        </div>
+                        <div class="bg-ivory-dark/70 rounded-2xl p-3 border border-champagne/20">
+                            <span id="cd-seconds" class="block font-serif text-3xl sm:text-4xl font-semibold text-rose">00</span>
+                            <span class="text-[11px] uppercase tracking-wider text-charcoal-light">Secs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add to Calendar Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <a id="google-cal-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sage text-white text-xs sm:text-sm font-medium hover:bg-sage-dark transition-colors shadow-sm">
+                        <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                        Add to Google Calendar
+                    </a>
+                    <button id="download-ics-btn" type="button" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-ivory text-charcoal border border-champagne/40 text-xs sm:text-sm font-medium hover:bg-ivory-dark transition-colors">
+                        <i data-lucide="download" class="w-4 h-4 text-champagne-dark"></i>
+                        Download .ICS (Apple / Outlook)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             3. OUR STORY & PHOTO GALLERY (WITH LIGHTBOX)
+        ========================================================== -->
+        <section id="story-section" class="space-y-10">
+            <div class="text-center max-w-xl mx-auto">
+                <p class="uppercase tracking-[0.25em] text-xs font-medium text-sage-dark mb-2">How It Started</p>
+                <h3 class="font-serif text-3xl sm:text-4xl text-charcoal">Our Love Story</h3>
+            </div>
+
+            <!-- Milestones Timeline -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-6 rounded-2xl border border-champagne/25 shadow-sm">
+                    <span class="inline-block px-3 py-1 rounded-full bg-rose-light text-charcoal text-xs font-medium mb-3">Autumn 2021</span>
+                    <h4 class="font-serif text-xl font-semibold text-charcoal mb-2">First Coffee &amp; Rainstorm</h4>
+                    <p class="text-sm text-charcoal-light leading-relaxed">
+                        A chance table share at a tiny bookstore café turned into a four-hour conversation about travel, architecture, and sourdough bread.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-champagne/25 shadow-sm">
+                    <span class="inline-block px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-medium mb-3">Spring 2023</span>
+                    <h4 class="font-serif text-xl font-semibold text-charcoal mb-2">Our First Home</h4>
+                    <p class="text-sm text-charcoal-light leading-relaxed">
+                        Armed with paint rollers, mismatched mugs, and an adopted golden retriever named Mochi, we built our favorite place in the world.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-champagne/25 shadow-sm">
+                    <span class="inline-block px-3 py-1 rounded-full bg-ivory-dark text-champagne-dark text-xs font-medium mb-3">December 2025</span>
+                    <h4 class="font-serif text-xl font-semibold text-charcoal mb-2">Under The Lanterns</h4>
+                    <p class="text-sm text-charcoal-light leading-relaxed">
+                        During a quiet evening stroll in Kyoto, Aiden knelt with a vintage ring—and Sophia said yes before he could even finish the question.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Photo Gallery -->
+            <div class="bg-white p-5 sm:p-8 rounded-3xl border border-champagne/25 shadow-sm">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <h4 class="font-serif text-2xl text-charcoal">Captured Moments</h4>
+                        <p class="text-xs text-charcoal-light">Tap any photo to enlarge</p>
+                    </div>
+                    <i data-lucide="camera" class="w-5 h-5 text-champagne"></i>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" data-caption="Golden hour engagement walk">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/E9EFE7/5D6D59?text=Moment+1'" alt="Engagement 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
+                            <span class="opacity-0 group-hover:opacity-100 text-white text-xs font-medium transition-opacity">View</span>
+                        </div>
+                    </button>
+
+                    <!-- Gallery Item 2 -->
+                    <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80" data-caption="Laughter in the botanical gardens">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/F6ECEC/2C2A29?text=Moment+2'" alt="Engagement 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
+                            <span class="opacity-0 group-hover:opacity-100 text-white text-xs font-medium transition-opacity">View</span>
+                        </div>
+                    </button>
+
+                    <!-- Gallery Item 3 -->
+                    <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1200&q=80" data-caption="Quiet afternoon together">
+                        <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/F2EDE4/A6885E?text=Moment+3'" alt="Engagement 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
+                            <span class="opacity-0 group-hover:opacity-100 text-white text-xs font-medium transition-opacity">View</span>
+                        </div>
+                    </button>
+
+                    <!-- Gallery Item 4 -->
+                    <button type="button" class="gallery-item group relative aspect-[4/5] rounded-2xl overflow-hidden bg-ivory-dark focus:outline-none" data-src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80" data-caption="Forever begins soon">
+                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/500x650/E9EFE7/5D6D59?text=Moment+4'" alt="Engagement 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors flex items-end p-3">
+                            <span class="opacity-0 group-hover:opacity-100 text-white text-xs font-medium transition-opacity">View</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             4. EVENT SCHEDULE & VENUE PRACTICALITIES
+        ========================================================== -->
+        <section id="schedule-section" class="space-y-8">
+            <div class="text-center max-w-xl mx-auto">
+                <p class="uppercase tracking-[0.25em] text-xs font-medium text-sage-dark mb-2">Order Of Events</p>
+                <h3 class="font-serif text-3xl sm:text-4xl text-charcoal">Schedule &amp; Venue</h3>
+            </div>
+
+            <!-- Itinerary Timeline Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-champagne/30 shadow-sm">
+                <div class="relative border-l-2 border-champagne/40 ml-4 sm:ml-6 space-y-8 py-2">
+                    <!-- Event 1 -->
+                    <div class="relative pl-7 sm:pl-9">
+                        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-sage border-4 border-ivory"></span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-sage-dark">4:30 PM</span>
+                        <h4 class="font-serif text-2xl text-charcoal mt-0.5">Garden Vow Ceremony</h4>
+                        <p class="text-sm text-charcoal-light mt-1">Guests are invited to be seated in the Conservatory Courtyard as we exchange vows.</p>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="relative pl-7 sm:pl-9">
+                        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-rose border-4 border-ivory"></span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-rose">5:30 PM</span>
+                        <h4 class="font-serif text-2xl text-charcoal mt-0.5">Sunset Cocktail &amp; Canapés</h4>
+                        <p class="text-sm text-charcoal-light mt-1">Enjoy botanical spritzes, acoustic jazz, and passed hors d'oeuvres on the terrace.</p>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="relative pl-7 sm:pl-9">
+                        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-champagne border-4 border-ivory"></span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-champagne-dark">7:00 PM</span>
+                        <h4 class="font-serif text-2xl text-charcoal mt-0.5">Candlelit Dinner &amp; Toast</h4>
+                        <p class="text-sm text-charcoal-light mt-1">A three-course celebratory dinner, heartfelt speeches, cake cutting, and first dance.</p>
+                    </div>
+                </div>
+
+                <!-- Dress Code Palette Swatches -->
+                <div class="mt-8 pt-8 border-t border-ivory-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-charcoal-light font-medium">Attire &amp; Palette</span>
+                        <h5 id="dress-code-title" class="font-serif text-xl text-charcoal mt-0.5">Garden Formal / Earthy Pastels</h5>
+                        <p class="text-xs text-charcoal-light mt-0.5">We kindly ask guests to reserve ivory &amp; white for the bride.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="w-9 h-9 rounded-full bg-[#7A8B76] border border-black/10 shadow-inner" title="Sage Green"></span>
+                            <span class="text-[10px] text-charcoal-light">Sage</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="w-9 h-9 rounded-full bg-[#C89B9B] border border-black/10 shadow-inner" title="Dusty Rose"></span>
+                            <span class="text-[10px] text-charcoal-light">Rose</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="w-9 h-9 rounded-full bg-[#C5A880] border border-black/10 shadow-inner" title="Champagne"></span>
+                            <span class="text-[10px] text-charcoal-light">Gold</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="w-9 h-9 rounded-full bg-[#8D7B68] border border-black/10 shadow-inner" title="Warm Taupe"></span>
+                            <span class="text-[10px] text-charcoal-light">Taupe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Venue Practicalities Card -->
+            <div id="location-section" class="bg-white rounded-3xl p-6 sm:p-8 border border-champagne/30 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
+                    <div class="space-y-2">
+                        <span class="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-sage-dark font-medium">
+                            <i data-lucide="navigation" class="w-3.5 h-3.5"></i>
+                            Getting There
+                        </span>
+                        <h4 id="venue-name-display" class="font-serif text-2xl sm:text-3xl text-charcoal">The Glasshouse at Seputeh</h4>
+                        <p id="venue-address-display" class="text-sm text-charcoal-light max-w-md leading-relaxed">
+                            17, Lorong Syed Putra Kiri, Bukit Seputeh, 50460 Kuala Lumpur, Malaysia
+                        </p>
+                        <p class="text-xs text-sage-dark pt-1 flex items-center gap-1.5">
+                            <i data-lucide="car" class="w-4 h-4"></i>
+                            Complimentary valet parking available at the main conservatory entrance.
+                        </p>
+                    </div>
+
+                    <!-- Practical Map & Copy Buttons -->
+                    <div class="flex flex-col gap-2.5 sm:min-w-[210px]">
+                        <a id="google-maps-link" href="https://maps.google.com/?q=The+Glasshouse+at+Seputeh+Kuala+Lumpur" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-charcoal text-ivory text-xs font-medium hover:bg-sage-dark transition-colors">
+                            <i data-lucide="map" class="w-4 h-4 text-champagne"></i>
+                            Open in Google Maps
+                        </a>
+                        <a id="waze-link" href="https://waze.com/ul?q=The+Glasshouse+at+Seputeh+Kuala+Lumpur&navigate=yes" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-sage-light text-sage-dark border border-sage/30 text-xs font-medium hover:bg-sage hover:text-white transition-colors">
+                            <i data-lucide="compass" class="w-4 h-4"></i>
+                            Open in Waze
+                        </a>
+                        <button id="copy-address-btn" type="button" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-ivory text-charcoal border border-champagne/40 text-xs font-medium hover:bg-ivory-dark transition-colors">
+                            <i data-lucide="copy" class="w-3.5 h-3.5 text-champagne-dark"></i>
+                            <span>Copy Address</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             5. INTERACTIVE RSVP FORM & DIGITAL PASS CONFIRMATION
+        ========================================================== -->
+        <section id="rsvp-section" class="bg-white rounded-3xl p-6 sm:p-10 border border-champagne/30 shadow-sm">
+            <div class="text-center max-w-lg mx-auto mb-8">
+                <p class="uppercase tracking-[0.25em] text-xs font-medium text-rose mb-2">Kindly Respond</p>
+                <h3 class="font-serif text-3xl sm:text-4xl text-charcoal">RSVP</h3>
+                <p class="text-sm text-charcoal-light mt-2">Please confirm your attendance so we can reserve your seat and meal preference.</p>
+            </div>
+
+            <!-- RSVP Form -->
+            <form id="rsvp-form" class="space-y-5 max-w-xl mx-auto">
+                <div>
+                    <label for="guest-name" class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Full Name *</label>
+                    <input type="text" id="guest-name" required placeholder="e.g., Eleanor Vance" class="w-full px-4 py-3 rounded-xl bg-ivory border border-champagne/40 text-sm text-charcoal focus:outline-none focus:border-sage">
+                </div>
+
+                <!-- Attendance Radio Cards -->
+                <div>
+                    <span class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Will you be attending? *</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="attendance" value="accept" checked class="peer sr-only">
+                            <div class="p-3.5 rounded-xl border border-champagne/40 bg-ivory peer-checked:bg-sage-light peer-checked:border-sage text-center transition-all">
+                                <span class="block text-sm font-medium text-charcoal">Joyfully Accepts</span>
+                                <span class="text-[11px] text-charcoal-light">Can't wait to celebrate!</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="attendance" value="decline" class="peer sr-only">
+                            <div class="p-3.5 rounded-xl border border-champagne/40 bg-ivory peer-checked:bg-rose-light peer-checked:border-rose text-center transition-all">
+                                <span class="block text-sm font-medium text-charcoal">Regretfully Declines</span>
+                                <span class="text-[11px] text-charcoal-light">Sending warm wishes from afar</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Conditional Attending Fields -->
+                <div id="attending-details" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="guest-count" class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Number of Guests</label>
+                        <select id="guest-count" class="w-full px-4 py-3 rounded-xl bg-ivory border border-champagne/40 text-sm text-charcoal focus:outline-none focus:border-sage">
+                            <option value="1">1 Guest (Just me)</option>
+                            <option value="2" selected>2 Guests</option>
+                            <option value="3">3 Guests (Family)</option>
+                            <option value="4">4 Guests (Family)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="meal-pref" class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Dietary / Meal Preference</label>
+                        <select id="meal-pref" class="w-full px-4 py-3 rounded-xl bg-ivory border border-champagne/40 text-sm text-charcoal focus:outline-none focus:border-sage">
+                            <option value="Standard (No Restrictions)">Standard (No Restrictions)</option>
+                            <option value="Halal">Halal</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Gluten-Free / Nut Allergy">Gluten-Free / Nut Allergy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="song-request" class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Song Request (Optional)</label>
+                    <input type="text" id="song-request" placeholder="A song that will get you on the dance floor..." class="w-full px-4 py-3 rounded-xl bg-ivory border border-champagne/40 text-sm text-charcoal focus:outline-none focus:border-sage">
+                </div>
+
+                <div>
+                    <label for="guest-wish" class="block text-xs uppercase tracking-wider font-medium text-charcoal mb-1.5">Leave a Wish for the Couple *</label>
+                    <textarea id="guest-wish" rows="3" required placeholder="Write a heartfelt note or blessing for our guestbook..." class="w-full px-4 py-3 rounded-xl bg-ivory border border-champagne/40 text-sm text-charcoal focus:outline-none focus:border-sage"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-charcoal text-ivory text-sm font-medium tracking-wide hover:bg-sage-dark transition-colors shadow-sm flex items-center justify-center gap-2">
+                    <i data-lucide="send" class="w-4 h-4 text-champagne"></i>
+                    Confirm RSVP &amp; Post Wish
+                </button>
+            </form>
+
+            <!-- Saved RSVP Confirmation Pass (Hidden until submitted or loaded from storage) -->
+            <div id="rsvp-pass-container" class="hidden max-w-xl mx-auto mt-6">
+                <div class="rounded-2xl bg-ivory border-2 border-dashed border-champagne p-6 relative">
+                    <div class="flex items-center justify-between border-b border-champagne/30 pb-4 mb-4">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-[0.25em] text-sage-dark font-semibold">Official Wedding Pass</span>
+                            <h4 id="pass-guest-name" class="font-serif text-2xl text-charcoal mt-0.5">Guest Name</h4>
+                        </div>
+                        <span id="pass-status-badge" class="px-3 py-1 rounded-full text-xs font-medium bg-sage text-white">Confirmed</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-xs mb-4">
+                        <div>
+                            <span class="text-charcoal-light block">Party Size</span>
+                            <span id="pass-guests" class="font-semibold text-charcoal text-sm">2 Guests</span>
+                        </div>
+                        <div>
+                            <span class="text-charcoal-light block">Meal Selection</span>
+                            <span id="pass-meal" class="font-semibold text-charcoal text-sm">Standard</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-champagne/20">
+                        <span class="text-[11px] text-charcoal-light">Saved on this device</span>
+                        <button id="edit-rsvp-btn" type="button" class="text-xs font-medium text-sage-dark underline hover:text-charcoal">Update Response</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             6. DIGITAL GIFT / ANGPOW / REGISTRY CARD
+        ========================================================== -->
+        <section id="gift-section" class="bg-gradient-to-br from-ivory-dark to-white rounded-3xl p-6 sm:p-10 border border-champagne/40 shadow-sm text-center">
+            <div class="w-12 h-12 rounded-2xl bg-champagne/20 text-champagne-dark flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="gift" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-serif text-3xl text-charcoal mb-2">Wedding Gift &amp; Blessing</h3>
+            <p class="text-sm text-charcoal-light max-w-md mx-auto mb-6 leading-relaxed">
+                Your presence at our wedding is the greatest gift of all. However, should you wish to bless us with a monetary gift or honeymoon contribution, we have provided a digital option below.
+            </p>
+            <button id="open-gift-modal-btn" type="button" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-champagne-dark text-white text-sm font-medium hover:bg-charcoal transition-colors shadow-sm">
+                <i data-lucide="qr-code" class="w-4 h-4"></i>
+                View Digital Angpow &amp; Bank Details
+            </button>
+        </section>
+
+        <!-- =========================================================
+             7. LIVE GUESTBOOK / WISHES WALL
+        ========================================================== -->
+        <section id="guestbook-section" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <p class="uppercase tracking-[0.25em] text-xs font-medium text-sage-dark mb-1">Warmest Blessings</p>
+                    <h3 class="font-serif text-3xl text-charcoal">Guestbook Wishes</h3>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" class="wish-filter-btn active px-3.5 py-1.5 rounded-full text-xs font-medium bg-charcoal text-ivory" data-filter="all">All Wishes</button>
+                    <button type="button" class="wish-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-white border border-champagne/40 text-charcoal" data-filter="accept">Attending</button>
+                </div>
+            </div>
+
+            <!-- Scrollable Wishes Container -->
+            <div id="wishes-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[480px] overflow-y-auto pr-1">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         FLOATING BOTTOM NAVIGATION BAR (MOBILE-FIRST QUICK ACCESS)
+    ========================================================== -->
+    <nav aria-label="Section Navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-lg bg-charcoal/95 backdrop-blur-md text-ivory rounded-2xl shadow-xl border border-white/10 px-2 py-2">
+        <ul class="grid grid-cols-6 gap-1 text-center">
+            <li>
+                <a href="#home-section" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <i data-lucide="heart" class="w-4 h-4 text-rose mb-1"></i>
+                    <span class="text-[10px] tracking-wide">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#schedule-section" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <i data-lucide="clock" class="w-4 h-4 text-champagne mb-1"></i>
+                    <span class="text-[10px] tracking-wide">Schedule</span>
+                </a>
+            </li>
+            <li>
+                <a href="#location-section" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-sage mb-1"></i>
+                    <span class="text-[10px] tracking-wide">Location</span>
+                </a>
+            </li>
+            <li>
+                <a href="#rsvp-section" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-rose mb-1"></i>
+                    <span class="text-[10px] tracking-wide">RSVP</span>
+                </a>
+            </li>
+            <li>
+                <button type="button" id="nav-gift-btn" class="w-full flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <i data-lucide="gift" class="w-4 h-4 text-champagne mb-1"></i>
+                    <span class="text-[10px] tracking-wide">Gift</span>
+                </button>
+            </li>
+            <li>
+                <button type="button" id="nav-customize-btn" class="w-full flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-sage mb-1"></i>
+                    <span class="text-[10px] tracking-wide">Edit</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- =========================================================
+         MODAL 1: DIGITAL GIFT / ANGPOW MODAL
+    ========================================================== -->
+    <div id="gift-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-charcoal/60 backdrop-blur-sm p-4">
+        <div class="bg-ivory rounded-3xl max-w-md w-full p-6 sm:p-8 border border-champagne/40 shadow-2xl relative">
+            <button type="button" class="close-modal absolute top-4 right-4 w-9 h-9 rounded-full bg-white border border-champagne/30 flex items-center justify-center text-charcoal hover:bg-ivory-dark">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+
+            <div class="text-center">
+                <span class="text-xs uppercase tracking-[0.22em] text-champagne-dark font-semibold">Digital Blessing</span>
+                <h4 class="font-serif text-3xl text-charcoal mt-1 mb-4">Wedding Gift Transfer</h4>
+
+                <!-- Crisp Generated SVG QR Code -->
+                <div class="bg-white p-4 rounded-2xl border border-champagne/30 inline-block shadow-sm mb-4">
+                    <svg class="w-40 h-40 mx-auto text-charcoal" viewBox="0 0 120 120" fill="currentColor">
+                        <!-- Finder Patterns -->
+                        <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M20,20 h10 v10 h-10 z"/>
+                        <path d="M80,10 h30 v30 h-30 z M85,15 v20 h20 v-20 z M90,20 h10 v10 h-10 z"/>
+                        <path d="M10,80 h30 v30 h-30 z M15,85 v20 h20 v-20 z M20,90 h10 v10 h-10 z"/>
+                        <!-- Data Modules -->
+                        <rect x="48" y="12" width="6" height="6"/><rect x="60" y="12" width="12" height="6"/>
+                        <rect x="48" y="24" width="12" height="6"/><rect x="66" y="30" width="6" height="12"/>
+                        <rect x="12" y="48" width="12" height="6"/><rect x="30" y="54" width="12" height="6"/>
+                        <rect x="52" y="52" width="16" height="16" rx="3" fill="#C5A880"/>
+                        <rect x="78" y="48" width="6" height="12"/><rect x="92" y="54" width="16" height="6"/>
+                        <rect x="48" y="78" width="6" height="12"/><rect x="60" y="84" width="12" height="6"/>
+                        <rect x="80" y="80" width="12" height="12"/><rect x="98" y="86" width="10" height="6"/>
+                        <rect x="84" y="98" width="24" height="10"/>
+                    </svg>
+                    <p class="text-[11px] font-medium text-sage-dark mt-2">Scan with any Banking / E-Wallet App</p>
+                </div>
+
+                <!-- Bank Account Details Box -->
+                <div class="bg-white rounded-2xl p-4 border border-champagne/30 text-left space-y-2 mb-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-charcoal-light">Bank Name</span>
+                        <span id="gift-bank-display" class="text-xs font-semibold text-charcoal">Maybank Berhad</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-charcoal-light">Account Holder</span>
+                        <span id="gift-holder-display" class="text-xs font-semibold text-charcoal">Aiden &amp; Sophia</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-ivory-dark">
+                        <div>
+                            <span class="text-[11px] text-charcoal-light block">Account Number</span>
+                            <span id="gift-account-display" class="font-mono text-base font-semibold text-charcoal">5142 8890 3412</span>
+                        </div>
+                        <button id="copy-bank-btn" type="button" class="px-3.5 py-2 rounded-xl bg-sage text-white text-xs font-medium hover:bg-sage-dark transition-colors flex items-center gap-1.5">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         MODAL 2: PHOTO GALLERY LIGHTBOX MODAL
+    ========================================================== -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-charcoal/90 backdrop-blur-md p-4">
+        <button type="button" class="close-modal absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div class="max-w-2xl w-full text-center">
+            <img id="lightbox-img" src="" alt="Enlarged moment" class="max-h-[75vh] mx-auto rounded-2xl shadow-2xl object-contain">
+            <p id="lightbox-caption" class="font-serif italic text-ivory text-lg mt-4"></p>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         MODAL 3: CUSTOMIZE CARD DRAWER / MODAL
+    ========================================================== -->
+    <div id="customize-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-charcoal/60 backdrop-blur-sm p-4">
+        <div class="bg-ivory rounded-3xl max-w-lg w-full max-h-[88vh] overflow-y-auto p-6 sm:p-8 border border-champagne/40 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-4 border-b border-champagne/30 mb-5">
+                <div>
+                    <span class="text-[10px] uppercase tracking-[0.22em] text-sage-dark font-semibold">Personalize Invitation</span>
+                    <h4 class="font-serif text-2xl text-charcoal">Customize Your Card</h4>
+                </div>
+                <button type="button" class="close-modal w-9 h-9 rounded-full bg-white border border-champagne/30 flex items-center justify-center text-charcoal hover:bg-ivory-dark">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <form id="customize-form" class="space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-charcoal mb-1">Partner 1 Name</label>
+                        <input type="text" id="cfg-partner1" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-charcoal mb-1">Partner 2 Name</label>
+                        <input type="text" id="cfg-partner2" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-charcoal mb-1">Wedding Date &amp; Time</label>
+                    <input type="datetime-local" id="cfg-datetime" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-charcoal mb-1">Venue Name</label>
+                    <input type="text" id="cfg-venue" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-charcoal mb-1">Full Venue Address</label>
+                    <input type="text" id="cfg-address" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-charcoal mb-1">Dress Code</label>
+                    <input type="text" id="cfg-dresscode" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-charcoal mb-1">Bank Name</label>
+                        <input type="text" id="cfg-bank" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-charcoal mb-1">Account Number</label>
+                        <input type="text" id="cfg-account" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-champagne/40 text-sm">
+                    </div>
+                </div>
+
+                <div class="pt-3 flex flex-wrap gap-2.5">
+                    <button type="submit" class="flex-1 py-3 px-4 rounded-xl bg-charcoal text-ivory text-xs font-medium hover:bg-sage-dark transition-colors">
+                        Save &amp; Apply Changes
+                    </button>
+                    <button type="button" id="share-link-btn" class="py-3 px-4 rounded-xl bg-sage-light text-sage-dark border border-sage/30 text-xs font-medium hover:bg-sage hover:text-white transition-colors flex items-center gap-1.5">
+                        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                        Copy Share Link
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         CUSTOM TOAST NOTIFICATION MESSAGE BOX (NO ALERT())
+    ========================================================== -->
+    <div id="toast-box" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-[-10px]">
+        <div class="bg-charcoal text-ivory px-5 py-2.5 rounded-full shadow-lg border border-champagne/30 text-xs font-medium flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-champagne"></i>
+            <span id="toast-message">Copied to clipboard</span>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         APPLICATION JAVASCRIPT LOGIC
+    ========================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // ---------------------------------------------------------
+            // 1. DEFAULT & CUSTOMIZABLE EVENT CONFIGURATION STATE
+            // ---------------------------------------------------------
+            const defaultConfig = {
+                partner1: 'Aiden',
+                partner2: 'Sophia',
+                datetime: '2026-10-24T16:30',
+                venue: 'The Glasshouse at Seputeh',
+                address: '17, Lorong Syed Putra Kiri, Bukit Seputeh, 50460 Kuala Lumpur, Malaysia',
+                dressCode: 'Garden Formal / Earthy Pastels',
+                bankName: 'Maybank Berhad',
+                accountNumber: '5142 8890 3412'
+            };
+
+            // Check URL params first (supports sharing customized card via URL!)
+            function loadConfig() {
+                const params = new URLSearchParams(window.location.search);
+                if (params.has('p1')) {
+                    return {
+                        partner1: params.get('p1') || defaultConfig.partner1,
+                        partner2: params.get('p2') || defaultConfig.partner2,
+                        datetime: params.get('dt') || defaultConfig.datetime,
+                        venue: params.get('vn') || defaultConfig.venue,
+                        address: params.get('ad') || defaultConfig.address,
+                        dressCode: params.get('dc') || defaultConfig.dressCode,
+                        bankName: params.get('bk') || defaultConfig.bankName,
+                        accountNumber: params.get('ac') || defaultConfig.accountNumber
+                    };
+                }
+                const saved = localStorage.getItem('wedding_card_config_v1');
+                return saved ? { ...defaultConfig, ...JSON.parse(saved) } : { ...defaultConfig };
+            }
+
+            let config = loadConfig();
+
+            // Helper: Toast Notification (Never use alert())
+            let toastTimer = null;
+            function showToast(msg) {
+                const box = document.getElementById('toast-box');
+                const msgEl = document.getElementById('toast-message');
+                msgEl.textContent = msg;
+                box.classList.remove('opacity-0', 'translate-y-[-10px]');
+                box.classList.add('opacity-100', 'translate-y-0');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    box.classList.remove('opacity-100', 'translate-y-0');
+                    box.classList.add('opacity-0', 'translate-y-[-10px]');
+                }, 2800);
+            }
+
+            // Helper: Clipboard copy using execCommand fallback for iframe compatibility
+            function copyTextToClipboard(text, successMsg) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(successMsg);
+                } catch (err) {
+                    showToast('Unable to copy automatically');
+                }
+                document.body.removeChild(textarea);
+            }
+
+            // Format readable date
+            function formatFullDate(isoStr) {
+                const dateObj = new Date(isoStr);
+                if (isNaN(dateObj.getTime())) return 'Saturday, October 24, 2026';
+                return dateObj.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+
+            // Apply configuration across entire DOM
+            function applyConfigToDOM() {
+                const coupleTitle = `${config.partner1} & ${config.partner2}`;
+                const monogram = `${config.partner1.charAt(0).toUpperCase()}&${config.partner2.charAt(0).toUpperCase()}`;
+                const formattedDate = formatFullDate(config.datetime);
+
+                document.title = `${coupleTitle} — Wedding Invitation`;
+                document.getElementById('cover-couple-names').textContent = coupleTitle;
+                document.getElementById('wax-monogram').textContent = monogram;
+                document.getElementById('cover-date-display').textContent = formattedDate;
+
+                document.getElementById('hero-couple-names').textContent = coupleTitle;
+                document.getElementById('hero-date-text').textContent = formattedDate;
+                document.getElementById('hero-venue-short').textContent = config.venue;
+
+                document.getElementById('dress-code-title').textContent = config.dressCode;
+                document.getElementById('venue-name-display').textContent = config.venue;
+                document.getElementById('venue-address-display').textContent = config.address;
+
+                // Map links
+                const encodedQuery = encodeURIComponent(`${config.venue}, ${config.address}`);
+                document.getElementById('google-maps-link').href = `https://maps.google.com/?q=${encodedQuery}`;
+                document.getElementById('waze-link').href = `https://waze.com/ul?q=${encodedQuery}&navigate=yes`;
+
+                // Bank / Gift details
+                document.getElementById('gift-bank-display').textContent = config.bankName;
+                document.getElementById('gift-holder-display').textContent = coupleTitle;
+                document.getElementById('gift-account-display').textContent = config.accountNumber;
+
+                // Google Calendar URL
+                const startDate = new Date(config.datetime);
+                const endDate = new Date(startDate.getTime() + 5 * 60 * 60 * 1000); // +5 hours
+                const toGCalFormat = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(coupleTitle + ' Wedding')}&dates=${toGCalFormat(startDate)}/${toGCalFormat(endDate)}&details=${encodeURIComponent('We look forward to celebrating with you!')}&location=${encodedQuery}`;
+                document.getElementById('google-cal-btn').href = gCalUrl;
+            }
+
+            applyConfigToDOM();
+
+            // ---------------------------------------------------------
+            // 2. WEB AUDIO API SOFT SYNTHESIZED AMBIENT MELODY
+            // ---------------------------------------------------------
+            let audioCtx = null;
+            let isMusicPlaying = false;
+            let melodyInterval = null;
+
+            // Gentle pentatonic music-box notes (C5, E5, G5, B5, D6, A5, G5, E5)
+            const notes = [523.25, 659.25, 783.99, 987.77, 1174.66, 880.00, 783.99, 659.25];
+            let noteIdx = 0;
+
+            function playSoftNote(freq) {
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                // Soft bell-like envelope
+                gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.2);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 2.3);
+            }
+
+            function startMusic() {
+                try {
+                    if (!audioCtx) {
+                        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    if (isMusicPlaying) return;
+                    isMusicPlaying = true;
+                    updateMusicUI();
+
+                    playSoftNote(notes[noteIdx % notes.length]);
+                    noteIdx++;
+                    melodyInterval = setInterval(() => {
+                        if (isMusicPlaying) {
+                            playSoftNote(notes[noteIdx % notes.length]);
+                            noteIdx++;
+                        }
+                    }, 1400);
+                } catch (e) {
+                    console.warn('Web Audio not supported:', e);
+                }
+            }
+
+            function stopMusic() {
+                isMusicPlaying = false;
+                clearInterval(melodyInterval);
+                updateMusicUI();
+            }
+
+            function updateMusicUI() {
+                const indicator = document.getElementById('music-indicator');
+                const label = document.getElementById('music-label');
+                const icon = document.getElementById('music-icon');
+
+                if (isMusicPlaying) {
+                    indicator.className = 'w-2 h-2 rounded-full bg-sage animate-ping';
+                    label.textContent = 'Melody On';
+                    icon.setAttribute('data-lucide', 'volume-2');
+                } else {
+                    indicator.className = 'w-2 h-2 rounded-full bg-charcoal-light/40';
+                    label.textContent = 'Music Off';
+                    icon.setAttribute('data-lucide', 'volume-x');
+                }
+                lucide.createIcons();
+            }
+
+            document.getElementById('music-toggle-btn').addEventListener('click', () => {
+                if (isMusicPlaying) stopMusic();
+                else startMusic();
+            });
+
+            // Envelope Cover Reveal
+            document.getElementById('open-invitation-btn').addEventListener('click', () => {
+                document.getElementById('envelope-cover').classList.add('opened');
+                startMusic();
+            });
+
+            // ---------------------------------------------------------
+            // 3. LIVE COUNTDOWN TIMER & .ICS DOWNLOADER
+            // ---------------------------------------------------------
+            function updateCountdown() {
+                const target = new Date(config.datetime).getTime();
+                const now = Date.now();
+                const diff = Math.max(0, target - now);
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+
+            // Download .ICS Calendar File
+            document.getElementById('download-ics-btn').addEventListener('click', () => {
+                const startDate = new Date(config.datetime);
+                const endDate = new Date(startDate.getTime() + 5 * 60 * 60 * 1000);
+                const fmt = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                const coupleTitle = `${config.partner1} & ${config.partner2}`;
+
+                const icsContent = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//Digital Wedding Invitation//EN',
+                    'BEGIN:VEVENT',
+                    `DTSTART:${fmt(startDate)}`,
+                    `DTEND:${fmt(endDate)}`,
+                    `SUMMARY:${coupleTitle} Wedding Celebration`,
+                    `DESCRIPTION:Join us to celebrate the wedding of ${coupleTitle}!`,
+                    `LOCATION:${config.venue}, ${config.address}`,
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].join('\r\n');
+
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${config.partner1}_${config.partner2}_Wedding.ics`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                showToast('Calendar (.ics) file downloaded');
+            });
+
+            // Copy Address Button
+            document.getElementById('copy-address-btn').addEventListener('click', () => {
+                copyTextToClipboard(`${config.venue}, ${config.address}`, 'Venue address copied!');
+            });
+
+            // ---------------------------------------------------------
+            // 4. PHOTO GALLERY LIGHTBOX
+            // ---------------------------------------------------------
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            document.querySelectorAll('.gallery-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    lightboxImg.src = btn.dataset.src;
+                    lightboxCaption.textContent = btn.dataset.caption;
+                    lightboxModal.classList.remove('hidden');
+                    lightboxModal.classList.add('flex');
+                });
+            });
+
+            // ---------------------------------------------------------
+            // 5. RSVP & LIVE GUESTBOOK WALL (LOCALSTORAGE PERSISTENCE)
+            // ---------------------------------------------------------
+            const defaultWishes = [
+                {
+                    name: 'Hannah & Marcus Lim',
+                    status: 'accept',
+                    message: 'So overjoyed for you both! Counting down the days until we raise a glass together under the conservatory lights.',
+                    time: '2 days ago'
+                },
+                {
+                    name: 'Auntie Mei Ling',
+                    status: 'accept',
+                    message: 'Wishing you a lifetime of patience, laughter, and endless adventures together. Blessings on your marriage!',
+                    time: '4 days ago'
+                },
+                {
+                    name: 'Daniel Brooks',
+                    status: 'decline',
+                    message: 'Gutted I cannot fly in from London in time, but sending all my love and cheering for you two from afar!',
+                    time: '1 week ago'
+                }
+            ];
+
+            let wishes = JSON.parse(localStorage.getItem('wedding_wishes_v1')) || defaultWishes;
+            let currentWishFilter = 'all';
+
+            function renderWishes() {
+                const container = document.getElementById('wishes-list');
+                const filtered = currentWishFilter === 'all'
+                    ? wishes
+                    : wishes.filter(w => w.status === 'accept');
+
+                container.innerHTML = filtered.map(w => `
+                    <article class="bg-white p-5 rounded-2xl border border-champagne/25 shadow-sm flex flex-col justify-between">
+                        <p class="text-sm text-charcoal leading-relaxed italic mb-4">"${escapeHtml(w.message)}"</p>
+                        <div class="flex items-center justify-between pt-3 border-t border-ivory-dark">
+                            <div>
+                                <h5 class="font-serif text-lg font-semibold text-charcoal leading-none">${escapeHtml(w.name)}</h5>
+                                <span class="text-[11px] text-charcoal-light">${escapeHtml(w.time || 'Just now')}</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-medium ${w.status === 'accept' ? 'bg-sage-light text-sage-dark' : 'bg-rose-light text-charcoal'}">
+                                ${w.status === 'accept' ? 'Attending' : 'Sending Love'}
+                            </span>
+                        </div>
+                    </article>
+                `).join('');
+            }
+
+            function escapeHtml(str) {
+                const div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            renderWishes();
+
+            // Filter buttons for Guestbook
+            document.querySelectorAll('.wish-filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.wish-filter-btn').forEach(b => {
+                        b.className = 'wish-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-white border border-champagne/40 text-charcoal';
+                    });
+                    btn.className = 'wish-filter-btn active px-3.5 py-1.5 rounded-full text-xs font-medium bg-charcoal text-ivory';
+                    currentWishFilter = btn.dataset.filter;
+                    renderWishes();
+                });
+            });
+
+            // Toggle attendance fields visibility
+            document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const details = document.getElementById('attending-details');
+                    details.style.display = e.target.value === 'accept' ? 'grid' : 'none';
+                });
+            });
+
+            // Load existing RSVP Pass if present
+            const rsvpForm = document.getElementById('rsvp-form');
+            const rsvpPassContainer = document.getElementById('rsvp-pass-container');
+
+            function showRsvpPass(data) {
+                rsvpForm.classList.add('hidden');
+                rsvpPassContainer.classList.remove('hidden');
+
+                document.getElementById('pass-guest-name').textContent = data.name;
+                const badge = document.getElementById('pass-status-badge');
+                if (data.status === 'accept') {
+                    badge.textContent = 'Joyfully Attending';
+                    badge.className = 'px-3 py-1 rounded-full text-xs font-medium bg-sage text-white';
+                    document.getElementById('pass-guests').textContent = `${data.guests} Guest(s)`;
+                    document.getElementById('pass-meal').textContent = data.meal;
+                } else {
+                    badge.textContent = 'Regretfully Declined';
+                    badge.className = 'px-3 py-1 rounded-full text-xs font-medium bg-rose text-white';
+                    document.getElementById('pass-guests').textContent = '0 Guests';
+                    document.getElementById('pass-meal').textContent = 'N/A';
+                }
+            }
+
+            const savedRsvp = JSON.parse(localStorage.getItem('wedding_user_rsvp_v1'));
+            if (savedRsvp) {
+                showRsvpPass(savedRsvp);
+            }
+
+            document.getElementById('edit-rsvp-btn').addEventListener('click', () => {
+                rsvpPassContainer.classList.add('hidden');
+                rsvpForm.classList.remove('hidden');
+            });
+
+            // Handle RSVP Submission
+            rsvpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('guest-name').value.trim();
+                const status = document.querySelector('input[name="attendance"]:checked').value;
+                const guests = document.getElementById('guest-count').value;
+                const meal = document.getElementById('meal-pref').value;
+                const song = document.getElementById('song-request').value.trim();
+                const wishText = document.getElementById('guest-wish').value.trim();
+
+                const rsvpData = { name, status, guests, meal, song, wishText };
+                localStorage.setItem('wedding_user_rsvp_v1', JSON.stringify(rsvpData));
+
+                // Add wish directly to live Guestbook Wall
+                wishes.unshift({
+                    name,
+                    status,
+                    message: wishText,
+                    time: 'Just now'
+                });
+                localStorage.setItem('wedding_wishes_v1', JSON.stringify(wishes));
+                renderWishes();
+
+                showRsvpPass(rsvpData);
+                showToast('RSVP confirmed & wish posted to Guestbook!');
+            });
+
+            // ---------------------------------------------------------
+            // 6. MODALS (GIFT MODAL & CUSTOMIZE CARD MODAL)
+            // ---------------------------------------------------------
+            const giftModal = document.getElementById('gift-modal');
+            const customizeModal = document.getElementById('customize-modal');
+
+            function openModal(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            function closeAllModals() {
+                [giftModal, customizeModal, lightboxModal].forEach(m => {
+                    m.classList.add('hidden');
+                    m.classList.remove('flex');
+                });
+            }
+
+            document.querySelectorAll('.close-modal').forEach(btn => {
+                btn.addEventListener('click', closeAllModals);
+            });
+
+            // Close modal on backdrop click
+            [giftModal, customizeModal, lightboxModal].forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeAllModals();
+                });
+            });
+
+            // Gift modal triggers
+            document.getElementById('open-gift-modal-btn').addEventListener('click', () => openModal(giftModal));
+            document.getElementById('nav-gift-btn').addEventListener('click', () => openModal(giftModal));
+
+            document.getElementById('copy-bank-btn').addEventListener('click', () => {
+                copyTextToClipboard(config.accountNumber, 'Account number copied!');
+            });
+
+            // Customize modal triggers
+            function openCustomizeDrawer() {
+                document.getElementById('cfg-partner1').value = config.partner1;
+                document.getElementById('cfg-partner2').value = config.partner2;
+                document.getElementById('cfg-datetime').value = config.datetime;
+                document.getElementById('cfg-venue').value = config.venue;
+                document.getElementById('cfg-address').value = config.address;
+                document.getElementById('cfg-dresscode').value = config.dressCode;
+                document.getElementById('cfg-bank').value = config.bankName;
+                document.getElementById('cfg-account').value = config.accountNumber;
+                openModal(customizeModal);
+            }
+
+            document.getElementById('open-customize-top').addEventListener('click', openCustomizeDrawer);
+            document.getElementById('nav-customize-btn').addEventListener('click', openCustomizeDrawer);
+
+            document.getElementById('customize-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                config = {
+                    partner1: document.getElementById('cfg-partner1').value.trim() || defaultConfig.partner1,
+                    partner2: document.getElementById('cfg-partner2').value.trim() || defaultConfig.partner2,
+                    datetime: document.getElementById('cfg-datetime').value || defaultConfig.datetime,
+                    venue: document.getElementById('cfg-venue').value.trim() || defaultConfig.venue,
+                    address: document.getElementById('cfg-address').value.trim() || defaultConfig.address,
+                    dressCode: document.getElementById('cfg-dresscode').value.trim() || defaultConfig.dressCode,
+                    bankName: document.getElementById('cfg-bank').value.trim() || defaultConfig.bankName,
+                    accountNumber: document.getElementById('cfg-account').value.trim() || defaultConfig.accountNumber
+                };
+                localStorage.setItem('wedding_card_config_v1', JSON.stringify(config));
+                applyConfigToDOM();
+                updateCountdown();
+                closeAllModals();
+                showToast('Wedding card updated!');
+            });
+
+            // Copy Shareable URL with custom query parameters
+            document.getElementById('share-link-btn').addEventListener('click', () => {
+                const url = new URL(window.location.href.split('?')[0]);
+                url.searchParams.set('p1', document.getElementById('cfg-partner1').value.trim() || config.partner1);
+                url.searchParams.set('p2', document.getElementById('cfg-partner2').value.trim() || config.partner2);
+                url.searchParams.set('dt', document.getElementById('cfg-datetime').value || config.datetime);
+                url.searchParams.set('vn', document.getElementById('cfg-venue').value.trim() || config.venue);
+                url.searchParams.set('ad', document.getElementById('cfg-address').value.trim() || config.address);
+                url.searchParams.set('dc', document.getElementById('cfg-dresscode').value.trim() || config.dressCode);
+                url.searchParams.set('bk', document.getElementById('cfg-bank').value.trim() || config.bankName);
+                url.searchParams.set('ac', document.getElementById('cfg-account').value.trim() || config.accountNumber);
+                copyTextToClipboard(url.toString(), 'Shareable invitation link copied!');
+            });
+        });
+    </script>
+</body>
+</html>
