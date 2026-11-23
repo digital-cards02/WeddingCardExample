@@ -8,32 +8,32 @@
     <!-- Open Graph Meta Tags for WhatsApp / Telegram / Social Previews on GitHub Pages -->
     <meta property="og:title" content="Clara & Julian — Wedding Invitation">
     <meta property="og:description" content="Tap to open our interactive 3D luxury wedding booklet, view the schedule, and RSVP.">
-    <meta property="og:type" content="website">
-
-    <!-- Google Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans -->
+    <!-- Google Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans, Alex Brush -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg-table: #E6DDD0;
             --bg-table-radial: #F4EFE7;
             --parchment: #FAF6F0;
-            --parchment-deep: #F1E9DC;
+            --parchment-deep: #F2ECE1;
             --linen-cover: #182620;
             --linen-cover-light: #23362E;
-            --ink: #221E1D;
+            --ink: #1F2421;
             --ink-muted: #5C554E;
-            --gold: #C5A059;
+            --gold: #C6A769;
             --gold-foil: #DFC080;
-            --gold-soft: rgba(197, 160, 89, 0.25);
+            --brass: #9E7E44;
+            --gold-soft: rgba(198, 167, 105, 0.25);
             --sage: #4E665A;
             --sage-light: #E6EFEA;
             --rose: #B98383;
             --rose-light: #F6EBEB;
             --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
             --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-script: 'Alex Brush', cursive;
             --flip-duration: 0.82s;
         }
 
@@ -317,27 +317,28 @@
         }
 
         /* =========================================================
-           MOBILE SINGLE-PAGE 3D FLIP ENGINE (< 860px)
+           MOBILE SINGLE-PAGE 3D FLIP ENGINE (< 860px) — FULL SCREEN
         ========================================================== */
         @media (max-width: 859px) {
             .stage {
-                padding: calc(58px + env(safe-area-inset-top)) 10px calc(68px + env(safe-area-inset-bottom));
+                padding: calc(52px + env(safe-area-inset-top)) 6px calc(62px + env(safe-area-inset-bottom));
             }
             .book-viewport {
-                width: min(92vw, 420px);
-                height: calc(100dvh - 132px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-                max-height: 640px;
-                min-height: 440px;
+                width: calc(100vw - 12px);
+                max-width: 520px;
+                height: calc(100dvh - 114px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+                max-height: none;
+                min-height: 380px;
             }
             /* Subtle stacked right-edge paper thickness on mobile */
             .book-base-shadow {
-                top: 4px;
-                bottom: 4px;
-                left: 6px;
-                right: -5px;
+                top: 3px;
+                bottom: 3px;
+                left: 4px;
+                right: -3px;
                 border-radius: 16px;
                 background: repeating-linear-gradient(90deg, #FAF6F0 0px, #FAF6F0 2px, #DFD4C4 2px, #DFD4C4 4px);
-                border: 1px solid rgba(197, 160, 89, 0.35);
+                border: 1px solid rgba(198, 167, 105, 0.35);
                 box-shadow: 0 18px 42px rgba(24, 38, 32, 0.22);
             }
             .sheet {
@@ -354,11 +355,11 @@
                 inset: 0;
                 border-radius: 16px;
                 background-color: var(--parchment);
-                background-image: radial-gradient(rgba(197, 160, 89, 0.09) 0.6px, transparent 0.6px);
+                background-image: radial-gradient(rgba(198, 167, 105, 0.09) 0.6px, transparent 0.6px);
                 background-size: 20px 20px;
-                border: 1px solid rgba(197, 160, 89, 0.42);
+                border: 1px solid rgba(198, 167, 105, 0.42);
                 box-shadow: inset 12px 0 20px -12px rgba(24, 38, 32, 0.14);
-                padding: 12px;
+                padding: 8px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -404,18 +405,20 @@
             position: relative;
             width: 100%;
             height: 100%;
-            border: 1px solid rgba(197, 160, 89, 0.34);
-            border-radius: 10px;
+            border: 1px solid rgba(198, 167, 105, 0.34);
+            border-radius: 12px;
             padding: 16px 16px 14px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
+            overflow-y: auto;
+            touch-action: pan-y;
+            -webkit-overflow-scrolling: touch;
         }
 
         @media (max-width: 859px) {
             .inner-frame {
-                padding: 16px 16px 14px;
+                padding: 14px 13px 12px;
             }
         }
 
@@ -795,14 +798,14 @@
         .gift-flip-container {
             perspective: 1000px;
             width: 100%;
-            min-height: 175px;
+            min-height: 200px;
             cursor: pointer;
         }
 
         .gift-flip-inner {
             position: relative;
             width: 100%;
-            height: 175px;
+            height: 200px;
             transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
             transform-style: preserve-3d;
         }
@@ -1270,8 +1273,8 @@
                 </div>
 
                 <div class="field-group">
-                    <label class="field-label">Gift Registry URL</label>
-                    <input id="h-reg" class="input-clean" type="url">
+                    <label class="field-label">Blessing Note (Default Gift Card)</label>
+                    <input id="h-note" class="input-clean" type="text" placeholder="With warmest wishes for your new home and journey together.">
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:8px; margin-top:6px;">
@@ -1305,7 +1308,7 @@
             hashtag: "#ClaraAndJulian2027",
             bankName: "Maybank Premier",
             accountNumber: "5140 8821 9044",
-            registryUrl: "https://www.zola.com"
+            blessingNote: "With warmest wishes for a lifetime of love, laughter, and home together."
         };
 
         // Load Config from URL Hash (#data=...), LocalStorage, or DEFAULT_CONFIG
@@ -1682,49 +1685,49 @@
                 </div>
             `;
 
-            // SLOT 5: PAGE 5 — WEDDING GIFT (TAP-TO-FLIP KEEPSAKE CARD)
+            // SLOT 5: PAGE 5 — WEDDING GIFT (TAP-TO-FLIP KEEPSAKE CARD — NO REGISTRY)
             const slot5 = `
                 <div class="inner-frame" style="text-align:center;">
                     <div>
-                        <span class="eyebrow">Blessings &amp; Registry</span>
-                        <h3 class="serif-title" style="font-size:clamp(24px, 6vw, 28px); margin-top:2px;">Wedding Gift</h3>
+                        <span class="eyebrow">Blessings &amp; Angpow</span>
+                        <h3 class="serif-title" style="font-size:clamp(24px, 6vw, 28px); margin-top:2px;">Wedding Blessing</h3>
                     </div>
 
-                    <p style="font-size:11.5px; color:var(--ink-muted); line-height:1.4;">
-                        Your presence is our greatest gift. If you wish to bless us with a monetary gift or honeymoon contribution, tap the keepsake card below:
+                    <p style="font-size:12px; color:var(--ink-muted); line-height:1.45;">
+                        ${escapeHtml(config.blessingNote || DEFAULT_CONFIG.blessingNote)}
                     </p>
 
                     <div class="gift-flip-container ${giftCardFlipped ? "flipped" : ""}" id="gift-flip-card">
                         <div class="gift-flip-inner">
                             <!-- Front of Gift Keepsake Card -->
                             <div class="gift-face gift-front">
-                                <div style="width:42px; height:42px; border-radius:50%; border:1px solid var(--gold-foil); display:flex; align-items:center; justify-content:center; color:var(--gold-foil); font-family:var(--font-serif); font-size:18px;">✦</div>
-                                <div class="serif-title gold-foil-text" style="font-size:22px;">Digital Angpow &amp; Gift</div>
-                                <span style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#DFC080; background:rgba(255,255,255,0.08); padding:5px 12px; border-radius:999px; border:1px solid rgba(223,192,128,0.35);">
-                                    Tap Card to Reveal QR &amp; Bank
+                                <div style="width:44px; height:44px; border-radius:50%; border:1px solid var(--gold-foil); display:flex; align-items:center; justify-content:center; color:var(--gold-foil); font-family:var(--font-serif); font-size:19px;">✦</div>
+                                <div class="serif-title gold-foil-text" style="font-size:23px;">Digital Blessing Card</div>
+                                <span style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#DFC080; background:rgba(255,255,255,0.08); padding:6px 14px; border-radius:999px; border:1px solid rgba(223,192,128,0.35);">
+                                    Tap to Flip for QR &amp; Transfer
                                 </span>
                             </div>
 
                             <!-- Back of Gift Keepsake Card -->
                             <div class="gift-face gift-back">
                                 <div style="display:flex; align-items:center; gap:12px; width:100%;">
-                                    <svg width="74" height="74" viewBox="0 0 120 120" fill="#182620" style="flex-shrink:0;">
+                                    <svg width="78" height="78" viewBox="0 0 120 120" fill="#182620" style="flex-shrink:0;">
                                         <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M20,20 h10 v10 h-10 z"/>
                                         <path d="M80,10 h30 v30 h-30 z M85,15 v20 h20 v-20 z M90,20 h10 v10 h-10 z"/>
                                         <path d="M10,80 h30 v30 h-30 z M15,85 v20 h20 v-20 z M20,90 h10 v10 h-10 z"/>
                                         <rect x="48" y="12" width="6" height="6"/><rect x="60" y="12" width="12" height="6"/>
                                         <rect x="48" y="24" width="12" height="6"/><rect x="66" y="30" width="6" height="12"/>
                                         <rect x="12" y="48" width="12" height="6"/><rect x="30" y="54" width="12" height="6"/>
-                                        <rect x="52" y="52" width="16" height="16" rx="3" fill="#C5A059"/>
+                                        <rect x="52" y="52" width="16" height="16" rx="3" fill="#C6A769"/>
                                         <rect x="78" y="48" width="6" height="12"/><rect x="92" y="54" width="16" height="6"/>
                                         <rect x="48" y="78" width="6" height="12"/><rect x="60" y="84" width="12" height="6"/>
                                         <rect x="80" y="80" width="12" height="12"/><rect x="98" y="86" width="10" height="6"/>
                                         <rect x="84" y="98" width="24" height="10"/>
                                     </svg>
                                     <div style="text-align:left; flex:1; min-width:0;">
-                                        <div style="font-size:10px; color:var(--ink-muted);">${escapeHtml(config.bankName)}</div>
-                                        <div style="font-size:11px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${couple}</div>
-                                        <div style="font-family:monospace; font-size:13.5px; font-weight:700; color:var(--linen-cover); margin-top:3px;">${escapeHtml(config.accountNumber)}</div>
+                                        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--brass); font-weight:600;">${escapeHtml(config.bankName)}</div>
+                                        <div style="font-size:12px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${couple}</div>
+                                        <div style="font-family:monospace; font-size:14px; font-weight:700; color:var(--linen-cover); margin-top:4px;">${escapeHtml(config.accountNumber)}</div>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-sage js-copy-bank" style="width:100%;">Copy Account Number</button>
@@ -1732,7 +1735,9 @@
                         </div>
                     </div>
 
-                    ${config.registryUrl ? `<a href="${escapeHtml(config.registryUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width:100%;">View Gift Registry ↗</a>` : ""}
+                    <div style="font-size:11px; color:var(--ink-muted);">
+                        Your presence &amp; prayers already mean the world to us.
+                    </div>
 
                     <div class="page-footer-num">— 05 —</div>
                 </div>
@@ -2399,7 +2404,7 @@
             document.getElementById("h-tag").value = config.hashtag;
             document.getElementById("h-bank").value = config.bankName;
             document.getElementById("h-acc").value = config.accountNumber;
-            document.getElementById("h-reg").value = config.registryUrl || "";
+            document.getElementById("h-note").value = config.blessingNote || DEFAULT_CONFIG.blessingNote;
             hostModal.classList.add("open");
         }
 
@@ -2416,7 +2421,7 @@
                 hashtag: document.getElementById("h-tag").value.trim() || DEFAULT_CONFIG.hashtag,
                 bankName: document.getElementById("h-bank").value.trim() || DEFAULT_CONFIG.bankName,
                 accountNumber: document.getElementById("h-acc").value.trim() || DEFAULT_CONFIG.accountNumber,
-                registryUrl: document.getElementById("h-reg").value.trim()
+                blessingNote: document.getElementById("h-note").value.trim() || DEFAULT_CONFIG.blessingNote
             };
         }
 
