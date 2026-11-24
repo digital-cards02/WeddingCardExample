@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#182620">
+    <meta name="color-scheme" content="light">
     <title>Clara &amp; Julian — Digital Wedding Flipbook</title>
 
     <!-- Open Graph Meta Tags for WhatsApp / Telegram / Social Previews on GitHub Pages -->
@@ -1109,7 +1111,389 @@
             color: var(--ink-muted);
             text-align: center;
         }
-    </style>
+    
+
+    /* =========================================================
+       MOBILE-FIRST FINISHING LAYER
+       Optimized for GitHub Pages on iOS Safari and Android Chrome.
+       The original desktop flipbook and all JavaScript features
+       remain intact; these rules refine the phone experience.
+    ========================================================== */
+    :root {
+        --mobile-gutter: 10px;
+        --mobile-dock-height: 54px;
+    }
+
+    html {
+        min-height: 100%;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    body {
+        min-height: 100%;
+        min-height: 100dvh;
+        overscroll-behavior: none;
+    }
+
+    button, input, select, textarea, a {
+        touch-action: manipulation;
+    }
+
+    button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .stage {
+        min-height: 100dvh;
+    }
+
+    .mobile-card,
+    .face {
+        min-width: 0;
+    }
+
+    .inner-frame {
+        min-height: 0;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(158, 126, 68, .45) transparent;
+    }
+
+    .inner-frame::-webkit-scrollbar,
+    .ledger-scroll::-webkit-scrollbar,
+    .modal-card::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .inner-frame::-webkit-scrollbar-thumb,
+    .ledger-scroll::-webkit-scrollbar-thumb,
+    .modal-card::-webkit-scrollbar-thumb {
+        background: rgba(158, 126, 68, .38);
+        border-radius: 20px;
+    }
+
+    .btn,
+    .choice-pill,
+    .stepper-btn,
+    .nav-arrow,
+    .icon-pill,
+    .page-dot-btn,
+    .ribbon-tab {
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    .btn:focus-visible,
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 2px solid var(--brass);
+        outline-offset: 3px;
+    }
+
+    @media (max-width: 859px) {
+        html, body {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            overflow: hidden;
+        }
+
+        .top-bar {
+            top: max(8px, env(safe-area-inset-top));
+            left: max(10px, env(safe-area-inset-left));
+            right: max(10px, env(safe-area-inset-right));
+        }
+
+        .icon-pill {
+            min-height: 42px;
+            min-width: 42px;
+            padding: 0 12px;
+            font-size: 11px;
+        }
+
+        .page-badge {
+            min-height: 36px;
+            padding: 0 13px;
+            font-size: 14px;
+        }
+
+        .stage {
+            height: 100dvh;
+            min-height: 0;
+            padding:
+                calc(54px + env(safe-area-inset-top))
+                var(--mobile-gutter)
+                calc(70px + env(safe-area-inset-bottom));
+            align-items: stretch;
+        }
+
+        .book-viewport {
+            width: 100%;
+            max-width: 520px;
+            height: calc(
+                100dvh - 138px
+                - env(safe-area-inset-top)
+                - env(safe-area-inset-bottom)
+            );
+            min-height: 0;
+            max-height: 900px;
+            margin: auto;
+        }
+
+        .book-base-shadow {
+            top: 3px;
+            bottom: 3px;
+            left: 3px;
+            right: -3px;
+            border-radius: 15px;
+            z-index: 0;
+        }
+
+        .mobile-deck {
+            height: 100%;
+            min-height: 0;
+        }
+
+        .mobile-card {
+            inset: 0;
+            min-height: 0;
+            padding: 7px;
+            border-radius: 15px;
+            transform-origin: center left;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .mobile-card.current {
+            z-index: 10;
+        }
+
+        .inner-frame {
+            min-height: 0;
+            padding: 12px 11px 10px;
+            border-radius: 10px;
+        }
+
+        .eyebrow {
+            font-size: 9px;
+            letter-spacing: .18em;
+        }
+
+        .bottom-dock {
+            bottom: max(8px, env(safe-area-inset-bottom));
+            width: min(96vw, 440px);
+            min-height: var(--mobile-dock-height);
+            gap: 5px;
+            padding: 4px 6px;
+        }
+
+        .nav-arrow {
+            min-width: 42px;
+            height: 42px;
+            padding: 0 9px;
+            font-size: 11px;
+        }
+
+        .mobile-dots-bar {
+            min-width: 0;
+            gap: 1px;
+        }
+
+        .page-dot-btn {
+            width: clamp(17px, 5.2vw, 24px);
+            height: 40px;
+            flex: 1 1 0;
+        }
+
+        .page-dot-btn span {
+            width: 6px;
+            height: 6px;
+        }
+
+        .page-dot-btn.active span {
+            width: 15px;
+        }
+
+        .modal-backdrop {
+            padding:
+                max(10px, env(safe-area-inset-top))
+                10px
+                max(10px, env(safe-area-inset-bottom));
+        }
+
+        .modal-card {
+            max-height: calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            padding: 17px;
+            border-radius: 16px;
+        }
+
+        .toast {
+            top: calc(56px + env(safe-area-inset-top));
+            max-width: calc(100vw - 28px);
+            text-align: center;
+            white-space: normal;
+        }
+
+        .input-clean {
+            min-height: 44px;
+            font-size: 16px;
+        }
+
+        .btn,
+        .choice-pill {
+            min-height: 42px;
+        }
+    }
+
+    @media (max-width: 380px) {
+        :root {
+            --mobile-gutter: 7px;
+        }
+
+        .stage {
+            padding-left: 7px;
+            padding-right: 7px;
+        }
+
+        .mobile-card {
+            padding: 5px;
+        }
+
+        .inner-frame {
+            padding: 10px 9px 9px;
+        }
+
+        .bottom-dock {
+            gap: 3px;
+            padding: 3px 5px;
+        }
+
+        .nav-arrow {
+            min-width: 38px;
+            padding: 0 7px;
+        }
+
+        .page-dot-btn {
+            width: 18px;
+        }
+    }
+
+    @media (max-height: 680px) and (max-width: 859px) {
+        .stage {
+            padding-top: calc(48px + env(safe-area-inset-top));
+            padding-bottom: calc(62px + env(safe-area-inset-bottom));
+        }
+
+        .book-viewport {
+            height: calc(
+                100dvh - 122px
+                - env(safe-area-inset-top)
+                - env(safe-area-inset-bottom)
+            );
+        }
+
+        .inner-frame {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .bottom-dock {
+            min-height: 48px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        .nav-arrow {
+            height: 40px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto !important;
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: .01ms !important;
+        }
+    }
+
+
+
+    /* MOBILE PAGE VISIBILITY / STACKING FIX
+       Keep the decorative paper stack behind the actual page content.
+       Give the mobile deck its own predictable stacking layer and make
+       each page's inner frame fill the card instead of flowing below it. */
+    @media (max-width: 859px) {
+        .book-viewport {
+            isolation: isolate;
+            overflow: visible;
+        }
+
+        .book-base-shadow {
+            z-index: 0 !important;
+            pointer-events: none;
+            background: rgba(250, 246, 240, 0.22) !important;
+        }
+
+        .mobile-deck {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100%;
+            height: 100%;
+            z-index: 2 !important;
+            isolation: isolate;
+            transform: none !important;
+        }
+
+        .mobile-card {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100%;
+            height: 100%;
+            min-height: 0 !important;
+            display: flex !important;
+            flex-direction: column;
+            overflow: hidden;
+            transform-style: flat;
+        }
+
+        .mobile-card.current {
+            z-index: 10 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+        .mobile-card.past,
+        .mobile-card.future {
+            pointer-events: none !important;
+        }
+
+        .mobile-card .inner-frame {
+            position: relative;
+            z-index: 1;
+            flex: 1 1 0;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            max-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .bottom-dock {
+            z-index: 70;
+        }
+    }
+
+</style>
 </head>
 <body>
 
